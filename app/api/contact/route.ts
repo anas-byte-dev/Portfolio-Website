@@ -167,18 +167,13 @@ export async function POST(req: Request) {
     // 2. Primary Free Method: FormSubmit.co
     // Zero sign-up, zero API keys required, delivers directly to your email!
     try {
-      const origin =
-        req.headers.get('origin') ||
-        req.headers.get('referer') ||
-        'https://anassiddiqui.dev'
-
       const formSubmitRes = await fetch(`https://formsubmit.co/ajax/${recipientEmail}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json',
-          Origin: origin,
-          Referer: origin,
+          Origin: 'https://anassiddiqui.dev',
+          Referer: 'https://anassiddiqui.dev/',
         },
         body: JSON.stringify({
           name,
