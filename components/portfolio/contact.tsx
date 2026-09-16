@@ -41,16 +41,49 @@ export function Contact() {
     setErrorMessage(null)
 
     try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
-      })
+      let isSuccess = false
 
-      const data = await res.json()
+      // 1. Send via local API route (handles FormSubmit with server-side safety)
+      try {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(form),
+        })
 
-      if (!res.ok) {
-        throw new Error(data.error || 'Failed to dispatch message.')
+        const data = await res.json()
+        if (res.ok && data.success) {
+          isSuccess = true
+        }
+      } catch (apiErr) {
+        console.warn('API route failed, falling back to direct FormSubmit:', apiErr)
+      }
+
+      // 2. Resilient direct FormSubmit fallback if API route didn't complete
+      if (!isSuccess) {
+        const fsRes = await fetch(`https://formsubmit.co/ajax/${profile.email}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
+          body: JSON.stringify({
+            name: form.name,
+            email: form.email,
+            _subject: `💼 New Portfolio Message from ${form.name}`,
+            message: form.message,
+            _replyto: form.email,
+            _captcha: 'false',
+            _template: 'table',
+          }),
+        })
+
+        const fsData = await fsRes.json()
+        if (fsRes.ok || fsData.success === 'true' || fsData.message?.includes('Activation')) {
+          isSuccess = true
+        } else {
+          throw new Error(fsData.message || 'Failed to dispatch message.')
+        }
       }
 
       setSubmittedName(form.name)
@@ -83,7 +116,7 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="relative border-t border-border/60 bg-card/20 py-24">
+    <section id="contact" className="relative border-t border-border/60 bg-card/20 py-16 sm:py-24">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <Reveal>
           <SectionHeading
@@ -93,7 +126,7 @@ export function Contact() {
           />
         </Reveal>
 
-        <div className="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
+        <div className="grid gap-8 sm:gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
           {/* Left Column: Contact Cards with Copy feedback - Cascading line by line */}
           <div className="space-y-4">
             {/* Email Card with 1-click Copy */}
@@ -104,16 +137,16 @@ export function Contact() {
               >
                 <a
                   href={`mailto:${profile.email}`}
-                  className="flex items-center gap-4 flex-1"
+                  className="flex items-center gap-3 sm:gap-4 flex-1 min-w-0"
                 >
-                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                  <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
                     <Mail className="h-5 w-5" />
                   </span>
-                  <div>
+                  <div className="min-w-0 flex-1">
                     <span className="block text-xs font-mono text-muted-foreground">
                       Email Address
                     </span>
-                    <span className="font-mono text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
+                    <span className="font-mono text-xs sm:text-sm font-semibold text-foreground group-hover:text-primary transition-colors truncate block">
                       {profile.email}
                     </span>
                   </div>
@@ -147,16 +180,16 @@ export function Contact() {
               >
                 <a
                   href={`tel:${profile.phone.replace(/\s/g, '')}`}
-                  className="flex items-center gap-4 flex-1"
+                  className="flex items-center gap-3 sm:gap-4 flex-1 min-w-0"
                 >
-                   <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                   <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
                     <Phone className="h-5 w-5" />
                   </span>
-                  <div>
+                  <div className="min-w-0 flex-1">
                     <span className="block text-xs font-mono text-muted-foreground">
                       Phone & WhatsApp
                     </span>
-                    <span className="font-mono text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
+                    <span className="font-mono text-xs sm:text-sm font-semibold text-foreground group-hover:text-primary transition-colors truncate block">
                       {profile.phone}
                     </span>
                   </div>
@@ -230,17 +263,28 @@ export function Contact() {
           </div>
 
           {/* Right Column: Interactive Form or Success Banner - Line by Line Entry */}
-          <div className="overflow-hidden rounded-2xl border border-border/80 bg-card/80 p-7 shadow-lg backdrop-blur-md">
+          <div className="overflow-hidden rounded-2xl border border-border/80 bg-card/80 p-5 sm:p-7 shadow-lg backdrop-blur-md">
             <AnimatePresence mode="wait">
               {!isSubmitted ? (
                 <motion.form
                   key="form"
                   onSubmit={handleSubmit}
+                  action={`https://formsubmit.co/${profile.email}`}
+                  method="POST"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  className="grid gap-5"
+                  className="grid gap-4 sm:gap-5"
                 >
+                  {/* FormSubmit Configuration Fields */}
+                  <input type="hidden" name="_captcha" value="false" />
+                  <input type="hidden" name="_template" value="table" />
+                  <input
+                    type="hidden"
+                    name="_subject"
+                    value={`💼 New Portfolio Message - Anas Siddiqui`}
+                  />
+
                   {errorMessage && (
                     <div className="flex items-start gap-3 rounded-xl border border-destructive/30 bg-destructive/10 p-4 text-xs text-destructive">
                       <AlertCircle className="h-4 w-4 shrink-0 mt-0.5" />
@@ -267,6 +311,7 @@ export function Contact() {
                       </label>
                       <input
                         id="name"
+                        name="name"
                         required
                         disabled={isSending}
                         value={form.name}
@@ -274,7 +319,7 @@ export function Contact() {
                           setForm({ ...form, name: e.target.value })
                         }
                         placeholder="e.g. John Doe / Hiring Manager"
-                        className="rounded-xl border border-input bg-background/80 px-4 py-3 text-sm outline-none transition-all placeholder:text-muted-foreground/60 focus:border-primary focus:ring-2 focus:ring-primary/20 disabled:opacity-60"
+                        className="rounded-xl border border-input bg-background/80 px-3.5 sm:px-4 py-2.5 sm:py-3 text-base sm:text-sm outline-none transition-all placeholder:text-muted-foreground/60 focus:border-primary focus:ring-2 focus:ring-primary/20 disabled:opacity-60"
                       />
                     </div>
                   </Reveal>
@@ -289,6 +334,7 @@ export function Contact() {
                       </label>
                       <input
                         id="email"
+                        name="email"
                         type="email"
                         required
                         disabled={isSending}
@@ -297,7 +343,7 @@ export function Contact() {
                           setForm({ ...form, email: e.target.value })
                         }
                         placeholder="you@company.com"
-                        className="rounded-xl border border-input bg-background/80 px-4 py-3 text-sm outline-none transition-all placeholder:text-muted-foreground/60 focus:border-primary focus:ring-2 focus:ring-primary/20 disabled:opacity-60"
+                        className="rounded-xl border border-input bg-background/80 px-3.5 sm:px-4 py-2.5 sm:py-3 text-base sm:text-sm outline-none transition-all placeholder:text-muted-foreground/60 focus:border-primary focus:ring-2 focus:ring-primary/20 disabled:opacity-60"
                       />
                     </div>
                   </Reveal>
@@ -312,15 +358,16 @@ export function Contact() {
                       </label>
                       <textarea
                         id="message"
+                        name="message"
                         required
-                        rows={5}
+                        rows={4}
                         disabled={isSending}
                         value={form.message}
                         onChange={(e) =>
                           setForm({ ...form, message: e.target.value })
                         }
                         placeholder="Hi Anas, we would love to discuss an opportunity for a Java Full Stack Developer position..."
-                        className="resize-none rounded-xl border border-input bg-background/80 px-4 py-3 text-sm outline-none transition-all placeholder:text-muted-foreground/60 focus:border-primary focus:ring-2 focus:ring-primary/20 disabled:opacity-60"
+                        className="resize-none rounded-xl border border-input bg-background/80 px-3.5 sm:px-4 py-2.5 sm:py-3 text-base sm:text-sm outline-none transition-all placeholder:text-muted-foreground/60 focus:border-primary focus:ring-2 focus:ring-primary/20 disabled:opacity-60"
                       />
                     </div>
                   </Reveal>
@@ -330,7 +377,7 @@ export function Contact() {
                       type="submit"
                       size="lg"
                       disabled={isSending}
-                      className="mt-2 w-full gap-2 shadow-lg shadow-primary/20 transition-all hover:shadow-primary/35 disabled:opacity-60"
+                      className="mt-2 w-full min-h-[44px] gap-2 shadow-lg shadow-primary/20 transition-all hover:shadow-primary/35 disabled:opacity-60"
                     >
                       {isSending ? (
                         <>

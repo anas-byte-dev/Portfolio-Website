@@ -69,17 +69,17 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative flex min-h-screen items-center overflow-hidden pt-28 pb-20 sm:pt-32"
+      className="relative flex min-h-screen items-center overflow-hidden pt-20 pb-16 sm:pt-32 sm:pb-20"
     >
-      <div className="mx-auto grid w-full max-w-6xl gap-12 px-5 sm:px-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+      <div className="mx-auto grid w-full max-w-6xl gap-8 sm:gap-10 px-4 sm:px-6 lg:px-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
         {/* Left Column: Introductions & CTA */}
-        <div>
+        <div className="min-w-0">
           {/* Status Badge */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="mb-5 inline-flex items-center gap-2.5 rounded-full border border-primary/30 bg-card/60 px-3.5 py-1.5 font-mono text-xs text-foreground/90 backdrop-blur-md shadow-sm"
+            className="mb-5 inline-flex items-center gap-2.5 rounded-full border border-primary/30 bg-card/60 px-3 py-1.5 font-mono text-[10px] sm:text-xs text-foreground/90 backdrop-blur-md shadow-sm"
           >
             <span className="relative flex h-2.5 w-2.5">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
@@ -93,7 +93,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-balance text-5xl font-extrabold tracking-tight sm:text-6xl lg:text-7xl"
+            className="text-balance text-3xl font-extrabold tracking-tight sm:text-5xl lg:text-7xl"
           >
             Hi, I&apos;m{' '}
             <span className="bg-gradient-to-r from-foreground via-primary to-emerald-400 bg-clip-text text-transparent">
@@ -106,7 +106,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="mt-5 flex min-h-9 items-center font-mono text-lg text-primary sm:text-xl"
+            className="mt-5 flex min-h-9 items-center font-mono text-base text-primary sm:text-xl"
           >
             <span className="text-muted-foreground mr-2 font-semibold">
               $
@@ -120,7 +120,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="mt-6 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg"
+            className="mt-6 max-w-full text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg"
           >
             {profile.tagline}
           </motion.p>
@@ -130,11 +130,11 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="mt-8 flex flex-wrap items-center gap-3.5"
+            className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5"
           >
             <Button
               size="lg"
-              className="group gap-2 shadow-lg shadow-primary/20 transition-all hover:shadow-primary/35"
+              className="group w-full sm:w-auto justify-center gap-2 shadow-lg shadow-primary/20 transition-all hover:shadow-primary/35"
               nativeButton={false}
               render={
                 <a
@@ -152,7 +152,7 @@ export function Hero() {
             <Button
               size="lg"
               variant="outline"
-              className="gap-2 border-border/80 hover:border-primary/50"
+              className="w-full sm:w-auto justify-center gap-2 border-border/80 hover:border-primary/50"
               nativeButton={false}
               render={
                 <a
@@ -173,24 +173,26 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.5 }}
-            className="mt-8 flex items-center gap-3"
+            className="mt-8 flex flex-wrap items-center gap-3"
           >
-            {socials.map(({ icon: Icon, href, label }) => (
-              <motion.a
-                key={label}
-                href={href}
-                target={href.startsWith('http') ? '_blank' : undefined}
-                rel="noopener noreferrer"
-                aria-label={label}
-                whileHover={{ y: -3, scale: 1.08 }}
-                whileTap={{ scale: 0.95 }}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-card/60 text-muted-foreground shadow-sm backdrop-blur-sm transition-colors hover:border-primary/50 hover:bg-primary/10 hover:text-primary"
-              >
-                <Icon className="h-4 w-4" />
-              </motion.a>
-            ))}
-            <div className="ml-2 h-4 w-[1px] bg-border" />
-            <span className="font-mono text-xs text-muted-foreground">
+            <div className="flex items-center gap-3">
+              {socials.map(({ icon: Icon, href, label }) => (
+                <motion.a
+                  key={label}
+                  href={href}
+                  target={href.startsWith('http') ? '_blank' : undefined}
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  whileHover={{ y: -3, scale: 1.08 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-card/60 text-muted-foreground shadow-sm backdrop-blur-sm transition-colors hover:border-primary/50 hover:bg-primary/10 hover:text-primary"
+                >
+                  <Icon className="h-4 w-4" />
+                </motion.a>
+              ))}
+            </div>
+            <div className="hidden sm:block h-4 w-[1px] bg-border" />
+            <span className="font-mono text-xs text-muted-foreground w-full sm:w-auto mt-1 sm:mt-0">
               Based in India · Open to Relocate
             </span>
           </motion.div>
@@ -201,13 +203,13 @@ export function Hero() {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, delay: 0.25 }}
-          className="relative"
+          className="relative min-w-0"
         >
-          {/* Floating Levitating Badges */}
+          {/* Floating Levitating Badges - Desktop only to avoid screen edge clipping on mobile and tablet */}
           <motion.div
             animate={{ y: [0, -10, 0] }}
             transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-            className="absolute -top-6 -left-6 z-20 hidden items-center gap-1.5 rounded-xl border border-border/80 bg-card/90 px-3 py-1.5 font-mono text-xs font-semibold shadow-lg backdrop-blur-md sm:flex"
+            className="absolute -top-6 -left-6 z-20 hidden items-center gap-1.5 rounded-xl border border-border/80 bg-card/90 px-3 py-1.5 font-mono text-xs font-semibold shadow-lg backdrop-blur-md lg:flex"
           >
             <span className="text-amber-500">☕</span>
             <span>Java 17</span>
@@ -221,7 +223,7 @@ export function Hero() {
               ease: 'easeInOut',
               delay: 0.6,
             }}
-            className="absolute -bottom-5 -left-4 z-20 hidden items-center gap-1.5 rounded-xl border border-border/80 bg-card/90 px-3 py-1.5 font-mono text-xs font-semibold shadow-lg backdrop-blur-md sm:flex"
+            className="absolute -bottom-5 -left-4 z-20 hidden items-center gap-1.5 rounded-xl border border-border/80 bg-card/90 px-3 py-1.5 font-mono text-xs font-semibold shadow-lg backdrop-blur-md lg:flex"
           >
             <span className="text-emerald-500">🍃</span>
             <span>Spring Boot</span>
@@ -235,7 +237,7 @@ export function Hero() {
               ease: 'easeInOut',
               delay: 1.2,
             }}
-            className="absolute -top-6 -right-4 z-20 hidden items-center gap-1.5 rounded-xl border border-border/80 bg-card/90 px-3 py-1.5 font-mono text-xs font-semibold shadow-lg backdrop-blur-md sm:flex"
+            className="absolute -top-6 -right-4 z-20 hidden items-center gap-1.5 rounded-xl border border-border/80 bg-card/90 px-3 py-1.5 font-mono text-xs font-semibold shadow-lg backdrop-blur-md lg:flex"
           >
             <span className="text-sky-400">⚛️</span>
             <span>React.js</span>
@@ -249,7 +251,7 @@ export function Hero() {
               ease: 'easeInOut',
               delay: 1.8,
             }}
-            className="absolute -bottom-5 -right-5 z-20 hidden items-center gap-1.5 rounded-xl border border-border/80 bg-card/90 px-3 py-1.5 font-mono text-xs font-semibold shadow-lg backdrop-blur-md sm:flex"
+            className="absolute -bottom-5 -right-5 z-20 hidden items-center gap-1.5 rounded-xl border border-border/80 bg-card/90 px-3 py-1.5 font-mono text-xs font-semibold shadow-lg backdrop-blur-md lg:flex"
           >
             <span className="text-blue-500">🐬</span>
             <span>MySQL</span>
@@ -366,15 +368,72 @@ function InteractiveTerminalCard() {
 
       <div className="overflow-hidden rounded-2xl border border-border/80 bg-card/90 shadow-2xl backdrop-blur-xl">
         {/* Terminal Header & File Tabs */}
-        <div className="flex flex-wrap items-center justify-between border-b border-border/80 bg-secondary/40 px-4 py-2.5 gap-2">
-          <div className="flex items-center gap-2">
-            <span className="h-3 w-3 rounded-full bg-rose-500/80" />
-            <span className="h-3 w-3 rounded-full bg-amber-500/80" />
-            <span className="h-3 w-3 rounded-full bg-emerald-500/80" />
+        <div className="border-b border-border/80 bg-secondary/40 px-3 sm:px-4 py-2 sm:py-2.5">
+          {/* Top row for mobile / unified row for desktop */}
+          <div className="flex items-center justify-between gap-2">
+            <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+              <span className="h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full bg-rose-500/80" />
+              <span className="h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full bg-amber-500/80" />
+              <span className="h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full bg-emerald-500/80" />
+            </div>
+
+            {/* Desktop File Switcher Tabs */}
+            <div className="hidden sm:flex items-center gap-1 rounded-lg border border-border/50 bg-background/50 p-1">
+              {(Object.keys(files) as FileKey[]).map((key) => {
+                const file = files[key]
+                const Icon = file.icon
+                const isActive = activeTab === key && !showConsole
+                return (
+                  <button
+                    key={key}
+                    type="button"
+                    onClick={() => {
+                      setActiveTab(key)
+                      setShowConsole(false)
+                    }}
+                    className={`flex shrink-0 items-center gap-1.5 rounded-md px-2.5 py-1 font-mono text-xs transition-colors ${
+                      isActive
+                        ? 'bg-card text-primary font-medium shadow-sm'
+                        : 'text-muted-foreground hover:text-foreground'
+                    }`}
+                  >
+                    <Icon className="h-3.5 w-3.5 shrink-0" />
+                    <span>{file.name}</span>
+                  </button>
+                )
+              })}
+            </div>
+
+            {/* Actions: Run & Copy */}
+            <div className="flex items-center gap-1.5 shrink-0">
+              <button
+                type="button"
+                onClick={handleRunCode}
+                disabled={isRunning}
+                className="inline-flex items-center gap-1 rounded-md border border-primary/30 bg-primary/10 px-2.5 py-1 font-mono text-xs font-semibold text-primary transition-all hover:bg-primary hover:text-primary-foreground disabled:opacity-50 active:scale-95"
+                title="Execute & Simulate Application"
+              >
+                <Play className="h-3 w-3 fill-current" />
+                <span>{isRunning ? '...' : 'Run'}</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={handleCopy}
+                className="inline-flex h-7 w-7 items-center justify-center rounded-md border border-border/50 bg-background/50 text-muted-foreground transition-colors hover:text-foreground active:scale-95"
+                title="Copy code"
+              >
+                {copied ? (
+                  <Check className="h-3.5 w-3.5 text-emerald-500" />
+                ) : (
+                  <Copy className="h-3.5 w-3.5" />
+                )}
+              </button>
+            </div>
           </div>
 
-          {/* File Switcher Tabs */}
-          <div className="flex items-center gap-1 rounded-lg border border-border/50 bg-background/50 p-1">
+          {/* Mobile File Switcher Tabs Row (shown only on mobile screens < 640px) */}
+          <div className="mt-2 flex sm:hidden items-center gap-1 overflow-x-auto no-scrollbar rounded-lg border border-border/50 bg-background/50 p-1 w-full">
             {(Object.keys(files) as FileKey[]).map((key) => {
               const file = files[key]
               const Icon = file.icon
@@ -387,44 +446,17 @@ function InteractiveTerminalCard() {
                     setActiveTab(key)
                     setShowConsole(false)
                   }}
-                  className={`flex items-center gap-1.5 rounded-md px-2.5 py-1 font-mono text-xs transition-colors ${
+                  className={`flex flex-1 items-center justify-center gap-1 rounded-md px-2 py-1 font-mono text-[11px] transition-colors ${
                     isActive
                       ? 'bg-card text-primary font-medium shadow-sm'
                       : 'text-muted-foreground hover:text-foreground'
                   }`}
                 >
-                  <Icon className="h-3 w-3" />
-                  <span>{file.name}</span>
+                  <Icon className="h-3 w-3 shrink-0" />
+                  <span className="truncate">{file.name}</span>
                 </button>
               )
             })}
-          </div>
-
-          {/* Actions: Run & Copy */}
-          <div className="flex items-center gap-1.5">
-            <button
-              type="button"
-              onClick={handleRunCode}
-              disabled={isRunning}
-              className="inline-flex items-center gap-1 rounded-md border border-primary/30 bg-primary/10 px-2.5 py-1 font-mono text-xs font-semibold text-primary transition-all hover:bg-primary hover:text-primary-foreground disabled:opacity-50"
-              title="Execute & Simulate Application"
-            >
-              <Play className="h-3 w-3 fill-current" />
-              <span>{isRunning ? 'Building...' : 'Run'}</span>
-            </button>
-
-            <button
-              type="button"
-              onClick={handleCopy}
-              className="inline-flex h-7 w-7 items-center justify-center rounded-md border border-border/50 bg-background/50 text-muted-foreground transition-colors hover:text-foreground"
-              title="Copy code"
-            >
-              {copied ? (
-                <Check className="h-3.5 w-3.5 text-emerald-500" />
-              ) : (
-                <Copy className="h-3.5 w-3.5" />
-              )}
-            </button>
           </div>
         </div>
 
@@ -433,11 +465,11 @@ function InteractiveTerminalCard() {
           {!showConsole ? (
             <motion.pre
               key={activeTab}
-              initial={{ opacity: 0, x: 22 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -22 }}
-              transition={{ duration: 0.22, ease: 'easeOut' }}
-              className="overflow-x-auto p-5 font-mono text-[12.5px] leading-relaxed text-foreground/90 select-text"
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
+              transition={{ duration: 0.18, ease: 'easeOut' }}
+              className="w-full max-w-full overflow-x-auto p-3.5 sm:p-5 font-mono text-[11px] sm:text-[12.5px] leading-relaxed text-foreground/90 select-text no-scrollbar"
             >
               <code>{files[activeTab].code}</code>
             </motion.pre>
@@ -486,7 +518,7 @@ function InteractiveTerminalCard() {
         </AnimatePresence>
 
         {/* Footer status bar */}
-        <div className="flex items-center justify-between border-t border-border/60 bg-secondary/30 px-4 py-2 font-mono text-[11px] text-muted-foreground">
+        <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 border-t border-border/60 bg-secondary/30 px-4 py-2 font-mono text-[11px] text-muted-foreground">
           <span className="flex items-center gap-1.5">
             <Sparkles className="h-3 w-3 text-primary" />
             JVM: HotSpot 64-Bit Server VM

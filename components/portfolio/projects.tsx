@@ -21,7 +21,7 @@ export function Projects() {
       : projects.filter((p) => p.category === filter)
 
   return (
-    <section id="projects" className="relative mx-auto max-w-6xl px-5 py-24 sm:px-8">
+    <section id="projects" className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
       <Reveal>
         <SectionHeading
           index="03 / projects"
@@ -31,8 +31,8 @@ export function Projects() {
       </Reveal>
 
       {/* Filter Tabs */}
-      <Reveal delay={80} className="mb-10">
-        <div className="flex flex-wrap items-center gap-2">
+      <Reveal delay={80} className="mb-8 sm:mb-10">
+        <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
           {categories.map((cat) => {
             const isSelected = filter === cat
             return (
@@ -40,7 +40,7 @@ export function Projects() {
                 key={cat}
                 type="button"
                 onClick={() => setFilter(cat)}
-                className={`relative rounded-full px-4 py-1.5 font-mono text-xs font-medium transition-all ${
+                className={`relative rounded-full px-3 sm:px-4 py-1 sm:py-1.5 font-mono text-[11px] sm:text-xs font-medium transition-all ${
                   isSelected
                     ? 'text-primary-foreground font-semibold shadow-md'
                     : 'border border-border/60 bg-card/60 text-muted-foreground hover:border-primary/40 hover:text-foreground'
@@ -60,15 +60,15 @@ export function Projects() {
         </div>
       </Reveal>
 
-      {/* Projects Grid with Smooth Tab Slide Animation */}
+      {/* Projects Grid with Smooth Tab Animation */}
       <AnimatePresence mode="wait">
         <motion.div
           key={filter}
-          initial={{ opacity: 0, x: 30 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -30 }}
-          transition={{ duration: 0.32, ease: [0.25, 0.1, 0.25, 1] }}
-          className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -12 }}
+          transition={{ duration: 0.22, ease: 'easeOut' }}
+          className="grid gap-5 sm:gap-8 md:grid-cols-2 lg:grid-cols-3"
         >
           {filteredProjects.map((project, i) => (
             <ProjectCard
@@ -99,7 +99,16 @@ function ProjectCard({
   index: number
   onOpenDetails: () => void
 }) {
-  // 3D Tilt Hook
+  const [canHover, setCanHover] = useState(false)
+
+  React.useEffect(() => {
+    setCanHover(
+      typeof window !== 'undefined' &&
+        window.matchMedia('(hover: hover) and (pointer: fine)').matches,
+    )
+  }, [])
+
+  // 3D Tilt Hook (desktop only)
   const x = useMotionValue(0)
   const y = useMotionValue(0)
 
@@ -110,6 +119,7 @@ function ProjectCard({
   const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ['-7.5deg', '7.5deg'])
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!canHover) return
     const rect = e.currentTarget.getBoundingClientRect()
     const width = rect.width
     const height = rect.height
@@ -122,6 +132,7 @@ function ProjectCard({
   }
 
   const handleMouseLeave = () => {
+    if (!canHover) return
     x.set(0)
     y.set(0)
   }
@@ -134,13 +145,13 @@ function ProjectCard({
       exit={{ opacity: 0, scale: 0.95, y: -15 }}
       transition={{ duration: 0.4, delay: index * 0.08 }}
       style={{
-        rotateX,
-        rotateY,
-        transformStyle: 'preserve-3d',
+        rotateX: canHover ? rotateX : undefined,
+        rotateY: canHover ? rotateY : undefined,
+        transformStyle: canHover ? 'preserve-3d' : undefined,
       }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-border/80 bg-card/80 p-6 shadow-md backdrop-blur-md transition-all hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10"
+      className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-border/80 bg-card/80 p-5 sm:p-6 shadow-md backdrop-blur-md transition-all hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10"
     >
       {/* Top Banner Accent */}
       <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-emerald-500 via-primary to-teal-400 opacity-60 transition-opacity group-hover:opacity-100" />

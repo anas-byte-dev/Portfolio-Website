@@ -57,10 +57,10 @@ export function Resume() {
               </div>
 
               {/* Primary Download Button */}
-              <div className="flex items-center gap-2.5">
+              <div className="flex w-full sm:w-auto items-center gap-2.5">
                 <Button
                   size="lg"
-                  className="gap-2 shadow-lg shadow-primary/25 transition-all hover:shadow-primary/40"
+                  className="flex-1 sm:flex-initial justify-center gap-2 shadow-lg shadow-primary/25 transition-all hover:shadow-primary/40"
                   nativeButton={false}
                   render={
                     <a
@@ -76,7 +76,7 @@ export function Resume() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="gap-2 border-border/80 hover:border-primary/50"
+                  className="justify-center gap-2 border-border/80 hover:border-primary/50"
                   nativeButton={false}
                   render={
                     <a

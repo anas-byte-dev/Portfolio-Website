@@ -24,7 +24,7 @@ export function SectionHeading({
 
   if (!mounted) {
     return (
-      <div className={cn('mb-12 max-w-2xl', className)}>
+      <div className={cn('mb-8 sm:mb-12 max-w-2xl', className)}>
         <span className="font-mono text-sm text-primary">{index}</span>
         <h2 className="mt-2 text-balance text-3xl font-bold tracking-tight sm:text-4xl">
           {title}
@@ -41,7 +41,7 @@ export function SectionHeading({
   const offset = shouldReduceMotion ? 0 : 20
 
   return (
-    <div className={cn('mb-12 max-w-2xl', className)}>
+    <div className={cn('mb-8 sm:mb-12 max-w-2xl', className)}>
       {/* Line 1: Section Index */}
       <motion.span
         initial={{ opacity: 0, y: offset }}

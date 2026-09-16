@@ -8,7 +8,7 @@ import { SectionHeading } from './section-heading'
 
 export function Certifications() {
   return (
-    <section id="certifications" className="relative border-y border-border/60 bg-card/20 py-24">
+    <section id="certifications" className="relative border-y border-border/60 bg-card/20 py-16 sm:py-24">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <Reveal>
           <SectionHeading

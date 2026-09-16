@@ -31,8 +31,8 @@ export function AmbientBackground() {
       <motion.div
         animate={{
           scale: [1, 1.15, 1],
-          x: [0, 40, 0],
-          y: [0, -30, 0],
+          x: [0, 30, 0],
+          y: [0, -20, 0],
           opacity: [0.12, 0.22, 0.12],
         }}
         transition={{
@@ -40,14 +40,14 @@ export function AmbientBackground() {
           repeat: Infinity,
           ease: 'easeInOut',
         }}
-        className="absolute -top-36 left-1/4 h-[550px] w-[550px] -translate-x-1/2 rounded-full bg-primary/25 blur-[140px]"
+        className="absolute -top-24 left-1/4 h-[320px] w-[320px] sm:h-[550px] sm:w-[550px] -translate-x-1/2 rounded-full bg-primary/25 blur-[90px] sm:blur-[140px] will-change-transform"
       />
 
       <motion.div
         animate={{
           scale: [1, 1.2, 1],
-          x: [0, -50, 0],
-          y: [0, 40, 0],
+          x: [0, -35, 0],
+          y: [0, 30, 0],
           opacity: [0.08, 0.18, 0.08],
         }}
         transition={{
@@ -56,14 +56,14 @@ export function AmbientBackground() {
           ease: 'easeInOut',
           delay: 2,
         }}
-        className="absolute top-1/2 -right-20 h-[600px] w-[600px] rounded-full bg-teal-500/20 blur-[160px]"
+        className="absolute top-1/2 right-0 sm:-right-16 h-[340px] w-[340px] sm:h-[600px] sm:w-[600px] rounded-full bg-teal-500/20 blur-[100px] sm:blur-[160px] will-change-transform"
       />
 
       <motion.div
         animate={{
           scale: [1, 1.1, 1],
-          x: [0, 30, 0],
-          y: [0, 50, 0],
+          x: [0, 25, 0],
+          y: [0, 35, 0],
           opacity: [0.06, 0.14, 0.06],
         }}
         transition={{
@@ -72,7 +72,7 @@ export function AmbientBackground() {
           ease: 'easeInOut',
           delay: 4,
         }}
-        className="absolute -bottom-32 left-1/3 h-[500px] w-[500px] rounded-full bg-emerald-600/20 blur-[150px]"
+        className="absolute -bottom-24 left-1/3 h-[300px] w-[300px] sm:h-[500px] sm:w-[500px] rounded-full bg-emerald-600/20 blur-[90px] sm:blur-[150px] will-change-transform"
       />
 
       {/* Interactive Cursor Spotlight */}

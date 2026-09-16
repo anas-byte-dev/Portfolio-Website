@@ -18,8 +18,8 @@ export function Skills() {
       : skillGroups.filter((g) => g.title === selectedCategory)
 
   return (
-    <section id="skills" className="relative border-y border-border/60 bg-card/20 py-24">
-      <div className="mx-auto max-w-6xl px-5 sm:px-8">
+    <section id="skills" className="relative border-y border-border/60 bg-card/20 py-16 sm:py-24 overflow-hidden">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <Reveal>
           <SectionHeading
             index="02 / skills"
@@ -29,8 +29,8 @@ export function Skills() {
         </Reveal>
 
         {/* Filter Tabs */}
-        <Reveal delay={80} className="mb-10">
-          <div className="flex flex-wrap items-center gap-2">
+        <Reveal delay={80} className="mb-8 sm:mb-10">
+          <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
             {categories.map((cat) => {
               const isSelected = selectedCategory === cat
               return (
@@ -38,7 +38,7 @@ export function Skills() {
                   key={cat}
                   type="button"
                   onClick={() => setSelectedCategory(cat)}
-                  className={`relative rounded-full px-4 py-1.5 font-mono text-xs font-medium transition-all ${
+                  className={`relative rounded-full px-3 sm:px-4 py-1 sm:py-1.5 font-mono text-[11px] sm:text-xs font-medium transition-all ${
                     isSelected
                       ? 'text-primary-foreground font-semibold shadow-md'
                       : 'border border-border/60 bg-card/60 text-muted-foreground hover:border-primary/40 hover:text-foreground'
@@ -58,15 +58,15 @@ export function Skills() {
           </div>
         </Reveal>
 
-        {/* Skill Groups Grid with Smooth Tab Slide Animation */}
+        {/* Skill Groups Grid with Smooth Tab Animation */}
         <AnimatePresence mode="wait">
           <motion.div
             key={selectedCategory}
-            initial={{ opacity: 0, x: 28 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -28 }}
-            transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-            className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.22, ease: 'easeOut' }}
+            className="grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3"
           >
             {filteredGroups.map((group, i) => (
               <motion.div
@@ -75,7 +75,7 @@ export function Skills() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.35, delay: i * 0.05 }}
                 whileHover={{ y: -4 }}
-                className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-border/80 bg-card/70 p-6 shadow-sm backdrop-blur-md transition-all hover:border-primary/50 hover:shadow-xl hover:shadow-primary/5"
+                className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-border/80 bg-card/70 p-4 sm:p-6 shadow-sm backdrop-blur-md transition-all hover:border-primary/50 hover:shadow-xl hover:shadow-primary/5"
               >
                 {/* Subtle top glare line on card hover */}
                 <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-primary/50 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
@@ -90,15 +90,15 @@ export function Skills() {
                     </span>
                   </div>
 
-                  <ul className="mt-4 flex flex-wrap gap-2">
+                  <ul className="mt-4 flex flex-wrap gap-1.5 sm:gap-2">
                     {group.items.map((item) => (
                       <motion.li
                         key={item}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.96 }}
-                        className="flex items-center gap-1.5 rounded-lg border border-border/70 bg-secondary/50 px-3 py-1.5 font-mono text-xs text-foreground/90 transition-colors hover:border-primary/50 hover:bg-primary/10 hover:text-primary"
+                        className="flex items-center gap-1.5 rounded-lg border border-border/70 bg-secondary/50 px-2.5 sm:px-3 py-1 sm:py-1.5 font-mono text-[11px] sm:text-xs text-foreground/90 transition-colors hover:border-primary/50 hover:bg-primary/10 hover:text-primary"
                       >
-                        <CheckCircle className="h-3 w-3 text-primary/70" />
+                        <CheckCircle className="h-3 w-3 text-primary/70 shrink-0" />
                         <span>{item}</span>
                       </motion.li>
                     ))}

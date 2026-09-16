@@ -21,7 +21,7 @@ export default function Page() {
       <ScrollProgress />
       <AmbientBackground />
       <Navbar />
-      <main className="relative z-10">
+      <main className="relative z-10 w-full max-w-[100vw] overflow-x-clip">
         <Hero />
         <About />
         <Skills />

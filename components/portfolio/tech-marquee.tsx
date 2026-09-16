@@ -10,8 +10,8 @@ export function TechMarquee() {
   return (
     <div className="relative w-full overflow-hidden border-y border-border/60 bg-card/20 py-4 backdrop-blur-sm">
       {/* Edge Gradients for smooth fading */}
-      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-background to-transparent" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-background to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-8 sm:w-24 bg-gradient-to-r from-background to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-8 sm:w-24 bg-gradient-to-l from-background to-transparent" />
 
       <motion.div
         aria-hidden="true"

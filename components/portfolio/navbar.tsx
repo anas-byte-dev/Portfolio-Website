@@ -49,6 +49,25 @@ export function Navbar() {
     return () => observer.disconnect()
   }, [])
 
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [open])
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpen(false)
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [])
+
   return (
     <header
       className={cn(
@@ -58,7 +77,7 @@ export function Navbar() {
           : 'border-b border-transparent bg-transparent',
       )}
     >
-      <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:px-8">
+      <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <motion.a
           href="#home"
           onClick={(e) => handleNavClick(e, '#home')}
@@ -76,7 +95,7 @@ export function Navbar() {
         </motion.a>
 
         {/* Desktop Navigation */}
-        <ul className="hidden items-center gap-1 rounded-full border border-border/50 bg-card/40 p-1.5 backdrop-blur-md md:flex">
+        <ul className="hidden items-center gap-1 rounded-full border border-border/50 bg-card/40 p-1.5 backdrop-blur-md lg:flex">
           {navLinks.map((link) => {
             const id = link.href.slice(1)
             const isActive = active === id
@@ -115,7 +134,7 @@ export function Navbar() {
             onClick={() => setOpen((o) => !o)}
             aria-label="Toggle menu"
             aria-expanded={open}
-            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-card/60 text-foreground transition-colors hover:border-primary/50 md:hidden"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-card/60 text-foreground transition-colors hover:border-primary/50 lg:hidden"
           >
             {open ? (
               <X className="h-[18px] w-[18px]" />
@@ -126,47 +145,61 @@ export function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Drawer & Backdrop */}
       <AnimatePresence>
         {open && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.25, ease: 'easeInOut' }}
-            className="overflow-hidden border-b border-border bg-background/95 backdrop-blur-2xl md:hidden"
-          >
-            <ul className="mx-auto flex max-w-6xl flex-col px-5 py-4 sm:px-8">
-              {navLinks.map((link, idx) => {
-                const id = link.href.slice(1)
-                const isActive = active === id
-                return (
-                  <motion.li
-                    key={link.href}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: idx * 0.04 }}
-                  >
-                    <a
-                      href={link.href}
-                      onClick={(e) => handleNavClick(e, link.href)}
-                      className={cn(
-                        'flex items-center justify-between rounded-lg px-3 py-2.5 text-sm font-medium transition-colors',
-                        isActive
-                          ? 'bg-primary/10 text-primary font-semibold'
-                          : 'text-muted-foreground hover:bg-muted/50 hover:text-foreground',
-                      )}
+          <>
+            {/* Backdrop overlay */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              onClick={() => setOpen(false)}
+              className="fixed inset-0 top-16 z-40 bg-background/70 backdrop-blur-sm lg:hidden"
+              aria-hidden="true"
+            />
+
+            {/* Mobile Drawer */}
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.25, ease: 'easeInOut' }}
+              className="relative z-50 max-h-[calc(100dvh-4.5rem)] overflow-y-auto border-b border-border/80 bg-background/98 shadow-2xl backdrop-blur-2xl lg:hidden"
+            >
+              <ul className="mx-auto flex max-w-6xl flex-col px-5 py-4 sm:px-8">
+                {navLinks.map((link, idx) => {
+                  const id = link.href.slice(1)
+                  const isActive = active === id
+                  return (
+                    <motion.li
+                      key={link.href}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: idx * 0.035 }}
                     >
-                      <span>{link.label}</span>
-                      {isActive && (
-                        <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                      )}
-                    </a>
-                  </motion.li>
-                )
-              })}
-            </ul>
-          </motion.div>
+                      <a
+                        href={link.href}
+                        onClick={(e) => handleNavClick(e, link.href)}
+                        className={cn(
+                          'flex min-h-[44px] items-center justify-between rounded-xl px-3.5 py-2.5 text-sm font-medium transition-colors active:scale-[0.99]',
+                          isActive
+                            ? 'bg-primary/10 text-primary font-semibold'
+                            : 'text-muted-foreground hover:bg-muted/50 hover:text-foreground',
+                        )}
+                      >
+                        <span>{link.label}</span>
+                        {isActive && (
+                          <span className="h-1.5 w-1.5 rounded-full bg-primary shadow-[0_0_6px_var(--primary)]" />
+                        )}
+                      </a>
+                    </motion.li>
+                  )
+                })}
+              </ul>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </header>

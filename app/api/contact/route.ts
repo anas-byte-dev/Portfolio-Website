@@ -164,7 +164,57 @@ export async function POST(req: Request) {
       })
     }
 
-    // Fallback: Web3Forms if WEB3FORMS_ACCESS_KEY is set
+    // 2. Primary Free Method: FormSubmit.co
+    // Zero sign-up, zero API keys required, delivers directly to your email!
+    try {
+      const origin =
+        req.headers.get('origin') ||
+        req.headers.get('referer') ||
+        'https://anassiddiqui.dev'
+
+      const formSubmitRes = await fetch(`https://formsubmit.co/ajax/${recipientEmail}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Origin: origin,
+          Referer: origin,
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          _subject: `💼 New Portfolio Message from ${name}${subject ? `: ${subject}` : ''}`,
+          message,
+          _replyto: email,
+          _captcha: 'false',
+          _template: 'table',
+        }),
+      })
+
+      const fsData = await formSubmitRes.json()
+
+      // If FormSubmit requests activation on initial setup
+      if (fsData.message && fsData.message.toLowerCase().includes('activation')) {
+        return NextResponse.json({
+          success: true,
+          method: 'formsubmit-activation',
+          message:
+            "FormSubmit sent an 'Activate Form' confirmation email to your Gmail (anassidd7256@gmail.com). Please click that link once to activate!",
+        })
+      }
+
+      if (formSubmitRes.ok && (fsData.success === true || fsData.success === 'true')) {
+        return NextResponse.json({
+          success: true,
+          method: 'formsubmit',
+          message: 'Your message has been sent successfully to Anas Siddiqui!',
+        })
+      }
+    } catch (fsError) {
+      console.warn('FormSubmit attempt encountered an error:', fsError)
+    }
+
+    // 3. Fallback: Web3Forms if WEB3FORMS_ACCESS_KEY is set
     if (web3formsKey) {
       const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
@@ -190,7 +240,7 @@ export async function POST(req: Request) {
       }
     }
 
-    // Default development / simulated mode when credentials are pending configuration
+    // 4. Default development / simulated mode when credentials are pending configuration
     console.log('--- NEW PORTFOLIO MESSAGE RECEIVED ---')
     console.log(`From: ${name} <${email}>`)
     console.log(`To: ${recipientEmail}`)
@@ -203,7 +253,7 @@ export async function POST(req: Request) {
       simulated: true,
       recipient: recipientEmail,
       message:
-        'Your message has been recorded! To enable direct live email delivery to your Gmail inbox, add your Gmail App Password in .env.local.',
+        'Your message has been recorded! FormSubmit is ready to deliver once activated.',
     })
   } catch (error: any) {
     console.error('Error in /api/contact:', error)

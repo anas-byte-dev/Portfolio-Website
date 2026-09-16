@@ -21,12 +21,15 @@ export function scrollToSection(targetIdOrHref: string) {
   const easeInOutCubic = (t: number) =>
     t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2
 
+  const isMobile = window.innerWidth < 768
+  const headerOffset = isMobile ? 56 : 70
+
   // If Lenis is active, drive the scroll through Lenis for maximum smoothness
   if ((window as any).__lenis) {
     const lenis = (window as any).__lenis
     lenis.scrollTo(element, {
-      offset: -70,
-      duration: 1.65,
+      offset: -headerOffset,
+      duration: isMobile ? 1.1 : 1.5,
       easing: easeInOutCubic,
     })
     try {
@@ -39,7 +42,6 @@ export function scrollToSection(targetIdOrHref: string) {
 
   // Fallback standalone RAF animation
   const startY = window.scrollY
-  const headerOffset = 70
   const elementY = element.getBoundingClientRect().top + window.scrollY
   const targetY = Math.max(0, elementY - headerOffset)
   const distance = targetY - startY

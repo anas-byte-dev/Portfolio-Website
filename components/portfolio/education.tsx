@@ -8,7 +8,7 @@ import { SectionHeading } from './section-heading'
 
 export function Education() {
   return (
-    <section id="education" className="relative mx-auto max-w-6xl px-5 py-24 sm:px-8">
+    <section id="education" className="relative mx-auto max-w-6xl px-4 py-16 sm:px-8 sm:py-24">
       <Reveal>
         <SectionHeading
           index="05 / education"
@@ -22,7 +22,7 @@ export function Education() {
           <Reveal key={item.degree} delay={250 + i * 220} direction="up">
             <motion.div
               whileHover={{ y: -4 }}
-              className="group relative flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-border/80 bg-card/80 p-7 shadow-md backdrop-blur-md transition-all hover:border-primary/50 hover:shadow-xl hover:shadow-primary/5"
+              className="group relative flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-border/80 bg-card/80 p-5 sm:p-7 shadow-md backdrop-blur-md transition-all hover:border-primary/50 hover:shadow-xl hover:shadow-primary/5"
             >
               {/* Corner Ambient Glow */}
               <div className="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full bg-primary/10 blur-2xl transition-all group-hover:bg-primary/20" />
