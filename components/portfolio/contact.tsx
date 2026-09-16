@@ -41,49 +41,35 @@ export function Contact() {
     setErrorMessage(null)
 
     try {
-      let isSuccess = false
+      // 1. Direct browser submission to FormSubmit (runs from client device, avoiding serverless IP restrictions)
+      const res = await fetch(`https://formsubmit.co/ajax/${profile.email}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          _subject: `💼 New Portfolio Message from ${form.name}`,
+          message: form.message,
+          _replyto: form.email,
+          _captcha: 'false',
+          _template: 'table',
+        }),
+      })
 
-      // 1. Send via local API route (handles FormSubmit with server-side safety)
-      try {
-        const res = await fetch('/api/contact', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(form),
-        })
+      const data = await res.json()
 
-        const data = await res.json()
-        if (res.ok && data.success) {
-          isSuccess = true
-        }
-      } catch (apiErr) {
-        console.warn('API route failed, falling back to direct FormSubmit:', apiErr)
+      // If FormSubmit requires one-time email activation
+      if (data.message && data.message.toLowerCase().includes('activation')) {
+        throw new Error(
+          "Action Required: FormSubmit sent an 'Activate Form' confirmation to anassidd7256@gmail.com. Please open Gmail (check your SPAM folder!) and click the link to start receiving messages.",
+        )
       }
 
-      // 2. Resilient direct FormSubmit fallback if API route didn't complete
-      if (!isSuccess) {
-        const fsRes = await fetch(`https://formsubmit.co/ajax/${profile.email}`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-          },
-          body: JSON.stringify({
-            name: form.name,
-            email: form.email,
-            _subject: `💼 New Portfolio Message from ${form.name}`,
-            message: form.message,
-            _replyto: form.email,
-            _captcha: 'false',
-            _template: 'table',
-          }),
-        })
-
-        const fsData = await fsRes.json()
-        if (fsRes.ok || fsData.success === 'true' || fsData.message?.includes('Activation')) {
-          isSuccess = true
-        } else {
-          throw new Error(fsData.message || 'Failed to dispatch message.')
-        }
+      if (!res.ok || (data.success !== true && data.success !== 'true')) {
+        throw new Error(data.message || 'Failed to dispatch message.')
       }
 
       setSubmittedName(form.name)
