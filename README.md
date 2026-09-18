@@ -3,7 +3,8 @@ Personal Portfolio
 A personal portfolio website built with Next.js and TypeScript, styled with Tailwind CSS. It showcases my projects, technical skills, education, and contact information through reusable, type-safe components and a mobile-first responsive layout.
 
 🔗 Live Demo: https://portfolio-website-lilac-nu-41.vercel.app/#contact
- 🔗 GitHub: https://github.com/anas-byte-dev/PortFolio
+
+🔗 GitHub: https://github.com/anas-byte-dev/PortFolio
 
 Features
 Responsive, mobile-first design that adapts across all screen sizes
