@@ -47,7 +47,7 @@ export function Resume() {
                       Anas Siddiqui
                     </h3>
                     <span className="rounded-md border border-primary/30 bg-primary/10 px-2 py-0.5 font-mono text-[11px] font-semibold text-primary">
-                      PDF · 46 KB
+                      Verified PDF
                     </span>
                   </div>
                   <p className="font-mono text-xs text-muted-foreground mt-0.5">

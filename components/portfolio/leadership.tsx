@@ -19,7 +19,7 @@ export function Leadership() {
 
       <div className="grid gap-6 md:grid-cols-2">
         {leadership.map((item, i) => (
-          <Reveal key={item.role} delay={250 + i * 220} direction="up">
+          <Reveal key={item.role} delay={80 + i * 80} direction="up">
             <motion.div
               whileHover={{ y: -4 }}
               transition={{ type: 'spring', stiffness: 350, damping: 22 }}

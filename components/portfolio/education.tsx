@@ -19,7 +19,7 @@ export function Education() {
 
       <div className="grid gap-6 md:grid-cols-2">
         {education.map((item, i) => (
-          <Reveal key={item.degree} delay={250 + i * 220} direction="up">
+          <Reveal key={item.degree} delay={80 + i * 80} direction="up">
             <motion.div
               whileHover={{ y: -4 }}
               className="group relative flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-border/80 bg-card/80 p-5 sm:p-7 shadow-md backdrop-blur-md transition-all hover:border-primary/50 hover:shadow-xl hover:shadow-primary/5"

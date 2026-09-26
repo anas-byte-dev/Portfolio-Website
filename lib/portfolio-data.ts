@@ -401,16 +401,17 @@ export const projects: Project[] = [
     subtitle: 'Modern Engineering Showcase',
     category: 'Frontend',
     description:
-      'High-performance, modern developer portfolio featuring fluid Framer Motion animations, interactive Java runtime simulator, 3D tilt cards, and glassmorphism design.',
+      'High-performance, modern developer portfolio featuring fluid motion physics, multi-mode theme switching (Dark, Light, and Eye Comfort), dynamic project exploration, and responsive glassmorphism design.',
     stack: ['Next.js 16', 'React 19', 'Framer Motion', 'Tailwind CSS', 'TypeScript'],
-    href: 'https://github.com/anas-byte-dev',
+    href: 'https://github.com/anas-byte-dev/Portfolio-Website',
     demoUrl: 'https://anas-sidd-portfolio.vercel.app/',
     architecture: 'Next.js App Router with server-rendered layout, client-side motion physics, and accessible responsive components.',
     features: [
-      'Interactive Java code simulator with mock Spring Boot runtime logs',
-      'Physics-based Framer Motion spring scroll reveals & 3D tilt hover cards',
-      'Interactive category filtering across skills and engineering projects',
-      'One-click clipboard actions and celebratory feedback animations',
+      'Multi-mode theme system supporting Dark, Warm Light, and Eye Comfort modes',
+      'Physics-based Framer Motion scroll reveals & 3D tilt interaction cards',
+      'Interactive category filtering across technical skills and engineering projects',
+      'Fluid Lenis smooth scrolling with section active tracking & back-to-top',
+      'One-click clipboard actions, PDF resume download, and confetti animations',
     ],
   },
 ]

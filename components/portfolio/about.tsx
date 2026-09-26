@@ -45,7 +45,7 @@ export function About() {
         <div>
           <div className="space-y-4">
             {about.bio.map((paragraph, i) => (
-              <Reveal key={i} delay={300 + i * 150} direction="up">
+              <Reveal key={i} delay={60 + i * 60} direction="up">
                 <p className="text-pretty text-sm sm:text-base leading-relaxed text-muted-foreground sm:text-lg">
                   {paragraph}
                 </p>
@@ -58,7 +58,7 @@ export function About() {
             {highlights.map((item, idx) => {
               const Icon = item.icon
               return (
-                <Reveal key={item.title} delay={700 + idx * 120} direction="up">
+                <Reveal key={item.title} delay={120 + idx * 60} direction="up">
                   <motion.div
                     whileHover={{ y: -3 }}
                     className="group flex flex-col rounded-xl border border-border/70 bg-card/60 p-4 sm:p-5 shadow-sm backdrop-blur-sm transition-all hover:border-primary/40 hover:shadow-md"
@@ -83,7 +83,7 @@ export function About() {
         <div className="grid content-start gap-4">
           <div className="grid gap-3 sm:gap-4 sm:grid-cols-3 lg:grid-cols-1">
             {about.stats.map((stat, i) => (
-              <Reveal key={stat.label} delay={450 + i * 150} direction="up">
+              <Reveal key={stat.label} delay={100 + i * 60} direction="up">
                 <motion.div
                   whileHover={{ scale: 1.02, y: -2 }}
                   transition={{ type: 'spring', stiffness: 300, damping: 20 }}
@@ -104,7 +104,7 @@ export function About() {
           </div>
 
           {/* Quick Info Box */}
-          <Reveal delay={900} direction="up">
+          <Reveal delay={180} direction="up">
             <div className="rounded-2xl border border-border/60 bg-secondary/30 p-4 sm:p-6 backdrop-blur-sm">
               <h4 className="font-mono text-xs font-semibold uppercase tracking-wider text-primary">
                 Core Philosophies

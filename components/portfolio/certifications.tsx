@@ -20,7 +20,7 @@ export function Certifications() {
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {certifications.map((cert, i) => (
-            <Reveal key={cert.title} delay={200 + i * 140} direction="up">
+            <Reveal key={cert.title} delay={60 + i * 60} direction="up">
               <motion.div
                 whileHover={{ y: -5, scale: 1.02 }}
                 transition={{ type: 'spring', stiffness: 350, damping: 22 }}

@@ -44,16 +44,15 @@ export const metadata: Metadata = {
     description:
       'Full-stack applications with Java, Spring Boot, React.js, MySQL, and REST APIs.',
     siteName: 'Anas Siddiqui',
-    images: ['/favicon-photo.jpg'],
+    images: ['/favicon-round.png'],
   },
   twitter: {
-    card: 'summary_large_image',
+    card: 'summary',
     title: 'Anas Siddiqui | Java Full Stack Developer',
     description:
       'Full-stack applications with Java, Spring Boot, React.js, MySQL, and REST APIs.',
-    images: ['/favicon-photo.jpg'],
+    images: ['/favicon-round.png'],
   },
-  generator: 'v0.app',
 }
 
 export const viewport: Viewport = {
