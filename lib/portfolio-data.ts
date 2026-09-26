@@ -523,7 +523,7 @@ export const projects: Project[] = [
       'High-performance, modern developer portfolio featuring fluid Framer Motion animations, interactive Java runtime simulator, 3D tilt cards, and glassmorphism design.',
     stack: ['Next.js 16', 'React 19', 'Framer Motion', 'Tailwind CSS', 'TypeScript'],
     href: 'https://github.com/anas-byte-dev',
-    demoUrl: 'https://portfolio-website-lilac-nu-41.vercel.app/',
+    demoUrl: 'https://anas-sidd-portfolio.vercel.app/',
     architecture: 'Next.js App Router with server-rendered layout, client-side motion physics, and accessible responsive components.',
     features: [
       'Interactive Java code simulator with mock Spring Boot runtime logs',
