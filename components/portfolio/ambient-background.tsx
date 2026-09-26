@@ -12,6 +12,10 @@ export function AmbientBackground() {
   const smoothY = useSpring(mouseY, { damping: 40, stiffness: 200 })
 
   useEffect(() => {
+    if (typeof window === 'undefined') return
+    // Only run cursor spotlight physics on fine-pointer desktop devices
+    if (!window.matchMedia('(pointer: fine)').matches) return
+
     setIsClient(true)
     const handleMouseMove = (e: MouseEvent) => {
       mouseX.set(e.clientX)
@@ -25,7 +29,7 @@ export function AmbientBackground() {
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none fixed inset-0 -z-10 overflow-hidden"
+      className="pointer-events-none fixed inset-0 -z-10 overflow-hidden transform-gpu"
     >
       {/* Dynamic Animated Ambient Orbs */}
       <motion.div
@@ -40,7 +44,7 @@ export function AmbientBackground() {
           repeat: Infinity,
           ease: 'easeInOut',
         }}
-        className="absolute -top-24 left-1/4 h-[320px] w-[320px] sm:h-[550px] sm:w-[550px] -translate-x-1/2 rounded-full bg-primary/25 blur-[90px] sm:blur-[140px] will-change-transform"
+        className="absolute -top-24 left-1/4 h-[300px] w-[300px] sm:h-[480px] sm:w-[480px] -translate-x-1/2 rounded-full bg-primary/20 blur-[70px] sm:blur-[110px] will-change-transform"
       />
 
       <motion.div
@@ -56,7 +60,7 @@ export function AmbientBackground() {
           ease: 'easeInOut',
           delay: 2,
         }}
-        className="absolute top-1/2 right-0 sm:-right-16 h-[340px] w-[340px] sm:h-[600px] sm:w-[600px] rounded-full bg-teal-500/20 blur-[100px] sm:blur-[160px] will-change-transform"
+        className="absolute top-1/2 right-0 sm:-right-16 h-[320px] w-[320px] sm:h-[500px] sm:w-[500px] rounded-full bg-teal-500/18 blur-[80px] sm:blur-[120px] will-change-transform"
       />
 
       <motion.div
@@ -72,7 +76,7 @@ export function AmbientBackground() {
           ease: 'easeInOut',
           delay: 4,
         }}
-        className="absolute -bottom-24 left-1/3 h-[300px] w-[300px] sm:h-[500px] sm:w-[500px] rounded-full bg-emerald-600/20 blur-[90px] sm:blur-[150px] will-change-transform"
+        className="absolute -bottom-24 left-1/3 h-[280px] w-[280px] sm:h-[450px] sm:w-[450px] rounded-full bg-emerald-600/18 blur-[70px] sm:blur-[110px] will-change-transform"
       />
 
       {/* Interactive Cursor Spotlight */}
@@ -84,7 +88,7 @@ export function AmbientBackground() {
             translateX: '-50%',
             translateY: '-50%',
           }}
-          className="absolute h-[420px] w-[420px] rounded-full bg-primary/8 blur-[100px]"
+          className="absolute h-[380px] w-[380px] rounded-full bg-primary/8 blur-[80px]"
         />
       )}
 

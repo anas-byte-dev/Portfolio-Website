@@ -102,7 +102,7 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="relative border-t border-border/60 bg-card/20 py-16 sm:py-24">
+    <section id="contact" className="scroll-mt-20 sm:scroll-mt-24 relative border-t border-border/60 bg-card/20 py-16 sm:py-24">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <Reveal>
           <SectionHeading

@@ -21,10 +21,10 @@ export function Projects() {
       : projects.filter((p) => p.category === filter)
 
   return (
-    <section id="projects" className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+    <section id="projects" className="scroll-mt-20 sm:scroll-mt-24 relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
       <Reveal>
         <SectionHeading
-          index="04 / projects"
+          index="03 / projects"
           title="Featured Projects"
           subtitle="Production-grade applications spanning full-stack architectures, core Java cryptographic utilities, and dynamic user interfaces."
         />
@@ -63,10 +63,10 @@ export function Projects() {
       <AnimatePresence mode="wait">
         <motion.div
           key={filter}
-          initial={{ opacity: 0, y: 12 }}
+          initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -12 }}
-          transition={{ duration: 0.22, ease: 'easeOut' }}
+          exit={{ opacity: 0, y: -8 }}
+          transition={{ duration: 0.16, ease: 'easeOut' }}
           className="grid gap-5 sm:gap-8 md:grid-cols-2 lg:grid-cols-3"
         >
           {filteredProjects.map((project, i) => (
@@ -119,9 +119,9 @@ function ProjectCard({
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!canHover) return
+    const width = e.currentTarget.offsetWidth || 300
+    const height = e.currentTarget.offsetHeight || 300
     const rect = e.currentTarget.getBoundingClientRect()
-    const width = rect.width
-    const height = rect.height
     const mouseX = e.clientX - rect.left
     const mouseY = e.clientY - rect.top
     const xPct = mouseX / width - 0.5
@@ -138,11 +138,10 @@ function ProjectCard({
 
   return (
     <motion.div
-      layout
-      initial={{ opacity: 0, scale: 0.95, y: 20 }}
+      initial={{ opacity: 0, scale: 0.96, y: 14 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
-      exit={{ opacity: 0, scale: 0.95, y: -15 }}
-      transition={{ duration: 0.4, delay: index * 0.08 }}
+      exit={{ opacity: 0, scale: 0.96, y: -10 }}
+      transition={{ duration: 0.28, delay: index * 0.04 }}
       style={{
         rotateX: canHover ? rotateX : undefined,
         rotateY: canHover ? rotateY : undefined,

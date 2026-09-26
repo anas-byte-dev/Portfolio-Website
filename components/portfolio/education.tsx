@@ -8,7 +8,7 @@ import { SectionHeading } from './section-heading'
 
 export function Education() {
   return (
-    <section id="education" className="relative mx-auto max-w-6xl px-4 py-16 sm:px-8 sm:py-24">
+    <section id="education" className="scroll-mt-20 sm:scroll-mt-24 relative mx-auto max-w-6xl px-4 py-16 sm:px-8 sm:py-24">
       <Reveal>
         <SectionHeading
           index="05 / education"

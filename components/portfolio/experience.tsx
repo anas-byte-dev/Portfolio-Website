@@ -8,7 +8,7 @@ import { SectionHeading } from './section-heading'
 
 export function Experience() {
   return (
-    <section id="experience" className="relative border-y border-border/60 bg-card/20 py-16 sm:py-24">
+    <section id="experience" className="scroll-mt-20 sm:scroll-mt-24 relative border-y border-border/60 bg-card/20 py-16 sm:py-24">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <Reveal>
           <SectionHeading

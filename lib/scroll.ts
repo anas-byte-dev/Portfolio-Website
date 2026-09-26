@@ -1,6 +1,6 @@
 /**
- * High-precision smooth scroll controller with easeInOutCubic momentum easing.
- * Provides a cinematic, visible downwards/upwards camera glide across sections.
+ * Fast, high-precision smooth scroll controller with zero lag.
+ * Instantly glides directly to target sections without sluggish delays or overshoot.
  */
 export function scrollToSection(targetIdOrHref: string) {
   if (typeof window === 'undefined') return
@@ -9,73 +9,49 @@ export function scrollToSection(targetIdOrHref: string) {
     ? targetIdOrHref.slice(1)
     : targetIdOrHref
 
-  const element = document.getElementById(id)
-  if (!element) {
-    if (id === 'home') {
+  if (id === 'home') {
+    if ((window as any).__lenis) {
+      ;(window as any).__lenis.scrollTo(0, { duration: 0.4 })
+    } else {
       window.scrollTo({ top: 0, behavior: 'smooth' })
     }
+    try {
+      history.replaceState(null, '', '#home')
+    } catch {}
     return
   }
 
-  // easeInOutCubic: gentle acceleration, visible travel in direction, gentle cushion stop
-  const easeInOutCubic = (t: number) =>
-    t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2
+  const element = document.getElementById(id)
+  if (!element) return
 
   const isMobile = window.innerWidth < 768
-  const headerOffset = isMobile ? 56 : 70
+  // 64px is standard header height (h-16); offset ensures the section title & badges are fully visible
+  const headerOffset = isMobile ? 64 : 76
 
-  // If Lenis is active, drive the scroll through Lenis for maximum smoothness
+  // If Lenis is active, drive through Lenis with fast, snappy duration
   if ((window as any).__lenis) {
     const lenis = (window as any).__lenis
     lenis.scrollTo(element, {
       offset: -headerOffset,
-      duration: isMobile ? 1.1 : 1.5,
-      easing: easeInOutCubic,
+      duration: isMobile ? 0.45 : 0.55,
+      easing: (t: number) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
     })
     try {
       history.replaceState(null, '', `#${id}`)
-    } catch {
-      // ignore
-    }
+    } catch {}
     return
   }
 
-  // Fallback standalone RAF animation
-  const startY = window.scrollY
+  // Fast native smooth scroll with headerOffset accounted for
   const elementY = element.getBoundingClientRect().top + window.scrollY
   const targetY = Math.max(0, elementY - headerOffset)
-  const distance = targetY - startY
 
-  if (Math.abs(distance) < 5) return
+  window.scrollTo({
+    top: targetY,
+    behavior: 'smooth',
+  })
 
-  const duration = Math.min(1950, Math.max(1200, Math.abs(distance) * 0.6))
-  const startTime = performance.now()
-
-  if ((window as any).__portfolioScrollAnim) {
-    cancelAnimationFrame((window as any).__portfolioScrollAnim)
-  }
-
-  const step = (currentTime: number) => {
-    const elapsed = currentTime - startTime
-    const progress = Math.min(1, elapsed / duration)
-    const easedProgress = easeInOutCubic(progress)
-
-    window.scrollTo({
-      top: startY + distance * easedProgress,
-      behavior: 'instant' as ScrollBehavior,
-    })
-
-    if (progress < 1) {
-      ;(window as any).__portfolioScrollAnim = requestAnimationFrame(step)
-    } else {
-      ;(window as any).__portfolioScrollAnim = null
-      try {
-        history.replaceState(null, '', `#${id}`)
-      } catch {
-        // ignore
-      }
-    }
-  }
-
-  ;(window as any).__portfolioScrollAnim = requestAnimationFrame(step)
+  try {
+    history.replaceState(null, '', `#${id}`)
+  } catch {}
 }

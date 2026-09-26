@@ -50,9 +50,9 @@ export function Reveal({
         x: 0,
         y: 0,
       }}
-      viewport={{ once: true, margin: '-40px' }}
+      viewport={{ once: true, margin: '0px 0px -20px 0px' }}
       transition={{
-        duration: shouldReduceMotion ? 0 : duration,
+        duration: shouldReduceMotion ? 0 : 0.35,
         delay: shouldReduceMotion ? 0 : delay / 1000,
         ease: [0.25, 0.1, 0.25, 1],
       }}

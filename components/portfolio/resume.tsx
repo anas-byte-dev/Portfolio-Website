@@ -18,7 +18,7 @@ import { SectionHeading } from './section-heading'
 
 export function Resume() {
   return (
-    <section id="resume" className="relative mx-auto max-w-6xl px-5 py-24 sm:px-8">
+    <section id="resume" className="scroll-mt-20 sm:scroll-mt-24 relative mx-auto max-w-6xl px-5 py-24 sm:px-8">
       <SectionHeading
         index="08 / resume"
         title="Resume & Credentials"
