@@ -271,7 +271,7 @@ export const projects: Project[] = [
       'Vite 8',
     ],
     href: 'https://github.com/anas-byte-dev',
-    demoUrl: 'https://hire-sphere-ai-front-end.vercel.app/',
+    demoUrl: 'https://hire-sphere-ai.vercel.app/',
     apiDocsUrl: 'https://hiresphereai.onrender.com/swagger-ui.html',
     architecture:
       'Decoupled 2-tier architecture featuring a high-performance Spring Boot 3 REST API on Render and a responsive React 19 SPA deployed on Vercel, bound by a zero-latency SSE real-time event bus.',
@@ -397,7 +397,7 @@ export const projects: Project[] = [
       'REST APIs',
     ],
     href: 'https://github.com/anas-byte-dev',
-    demoUrl: 'https://hire-sphere-ai-front-end.vercel.app/',
+    demoUrl: 'https://hire-sphere-ai.vercel.app/',
     architecture:
       'Engineered with a clean layered architecture separating the autonomous ReAct agent loop, JWT security filters, asynchronous worker thread pools, and JPA persistence. Features resilient @RestControllerAdvice error handling, RFC 7807 problem details, and Strategy/Factory design patterns for LLM dispatch and scoring.',
     features: [
