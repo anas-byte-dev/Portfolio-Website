@@ -33,9 +33,9 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: 'Anas Siddiqui' }],
   icons: {
-    icon: '/favicon-photo.jpg',
-    shortcut: '/favicon-photo.jpg',
-    apple: '/favicon-photo.jpg',
+    icon: '/favicon-round.png',
+    shortcut: '/favicon-round.png',
+    apple: '/favicon-round.png',
   },
   openGraph: {
     type: 'website',
