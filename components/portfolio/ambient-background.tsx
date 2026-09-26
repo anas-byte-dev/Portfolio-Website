@@ -60,7 +60,7 @@ export function AmbientBackground() {
           ease: 'easeInOut',
           delay: 2,
         }}
-        className="absolute top-1/2 right-0 sm:-right-16 h-[320px] w-[320px] sm:h-[500px] sm:w-[500px] rounded-full bg-indigo-500/16 blur-[80px] sm:blur-[120px] will-change-transform"
+        className="absolute top-1/2 right-0 sm:-right-16 h-[320px] w-[320px] sm:h-[500px] sm:w-[500px] rounded-full bg-amber-500/14 blur-[80px] sm:blur-[120px] will-change-transform"
       />
 
       <motion.div
@@ -76,7 +76,7 @@ export function AmbientBackground() {
           ease: 'easeInOut',
           delay: 4,
         }}
-        className="absolute -bottom-24 left-1/3 h-[280px] w-[280px] sm:h-[450px] sm:w-[450px] rounded-full bg-cyan-500/12 blur-[70px] sm:blur-[110px] will-change-transform"
+        className="absolute -bottom-24 left-1/3 h-[280px] w-[280px] sm:h-[450px] sm:w-[450px] rounded-full bg-emerald-700/12 blur-[70px] sm:blur-[110px] will-change-transform"
       />
 
       {/* Interactive Cursor Spotlight */}
