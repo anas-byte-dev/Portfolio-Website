@@ -212,7 +212,7 @@ export function Hero() {
             className="absolute -top-6 -left-6 z-20 hidden items-center gap-1.5 rounded-xl border border-border/80 bg-card/90 px-3 py-1.5 font-mono text-xs font-semibold shadow-lg backdrop-blur-md lg:flex"
           >
             <span className="text-amber-500">☕</span>
-            <span>Java 17</span>
+            <span>Java 21</span>
           </motion.div>
 
           <motion.div
@@ -275,7 +275,7 @@ public class Developer {
   private final String name = "Anas Siddiqui";
   private final String role = "Java Full Stack Developer";
   private final String[] stack = {
-    "Java 17", "Spring Boot", "React.js", "MySQL"
+    "Java 21", "Spring Boot", "React.js", "MySQL"
   };
 
   public Status buildSolution() {

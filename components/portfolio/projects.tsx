@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion'
-import { ArrowUpRight, Info, Layers, Sparkles } from 'lucide-react'
+import { ArrowUpRight, Info, Layers, Sparkles, FileCode } from 'lucide-react'
 import { projects, type Project } from '@/lib/portfolio-data'
 import { Reveal } from './reveal'
 import { SectionHeading } from './section-heading'
@@ -24,7 +24,7 @@ export function Projects() {
     <section id="projects" className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
       <Reveal>
         <SectionHeading
-          index="03 / projects"
+          index="04 / projects"
           title="Featured Projects"
           subtitle="Production-grade applications spanning full-stack architectures, core Java cryptographic utilities, and dynamic user interfaces."
         />
@@ -40,11 +40,10 @@ export function Projects() {
                 key={cat}
                 type="button"
                 onClick={() => setFilter(cat)}
-                className={`relative rounded-full px-3 sm:px-4 py-1 sm:py-1.5 font-mono text-[11px] sm:text-xs font-medium transition-all ${
-                  isSelected
+                className={`relative rounded-full px-3 sm:px-4 py-1 sm:py-1.5 font-mono text-[11px] sm:text-xs font-medium transition-all ${isSelected
                     ? 'text-primary-foreground font-semibold shadow-md'
                     : 'border border-border/60 bg-card/60 text-muted-foreground hover:border-primary/40 hover:text-foreground'
-                }`}
+                  }`}
               >
                 {isSelected && (
                   <motion.div
@@ -104,7 +103,7 @@ function ProjectCard({
   React.useEffect(() => {
     setCanHover(
       typeof window !== 'undefined' &&
-        window.matchMedia('(hover: hover) and (pointer: fine)').matches,
+      window.matchMedia('(hover: hover) and (pointer: fine)').matches,
     )
   }, [])
 
@@ -164,21 +163,66 @@ function ProjectCard({
             {project.category}
           </span>
           <div className="flex items-center gap-2">
-            <a
-              href={project.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="View Source on GitHub"
-              className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-border/60 bg-secondary/50 text-muted-foreground transition-colors hover:border-primary hover:text-primary"
-            >
-              <GithubIcon className="h-4 w-4" />
-            </a>
+            {project.frontendRepo && project.backendRepo ? (
+              <>
+                <a
+                  href={project.frontendRepo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Frontend Repository (GitHub)"
+                  title="Frontend Repo (GitHub)"
+                  className="group/link relative inline-flex h-8 w-8 items-center justify-center rounded-lg border border-border/60 bg-secondary/50 text-muted-foreground transition-colors hover:border-primary hover:text-primary"
+                >
+                  <GithubIcon className="h-4 w-4" />
+                  <span className="absolute -bottom-1 -right-1 rounded bg-secondary px-0.5 text-[8px] font-mono font-bold leading-none text-muted-foreground border border-border/70 group-hover/link:text-primary group-hover/link:border-primary/50">
+                    FE
+                  </span>
+                </a>
+                <a
+                  href={project.backendRepo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Backend Repository (GitHub)"
+                  title="Backend Repo (GitHub)"
+                  className="group/link relative inline-flex h-8 w-8 items-center justify-center rounded-lg border border-border/60 bg-secondary/50 text-muted-foreground transition-colors hover:border-primary hover:text-primary"
+                >
+                  <GithubIcon className="h-4 w-4" />
+                  <span className="absolute -bottom-1 -right-1 rounded bg-secondary px-0.5 text-[8px] font-mono font-bold leading-none text-muted-foreground border border-border/70 group-hover/link:text-primary group-hover/link:border-primary/50">
+                    BE
+                  </span>
+                </a>
+              </>
+            ) : (
+              <a
+                href={project.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub Profile"
+                title="GitHub Profile"
+                className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-border/60 bg-secondary/50 text-muted-foreground transition-colors hover:border-primary hover:text-primary"
+              >
+                <GithubIcon className="h-4 w-4" />
+              </a>
+            )}
+            {project.apiDocsUrl && (
+              <a
+                href={project.apiDocsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="API / Swagger Documentation"
+                title="API / Swagger Documentation"
+                className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-border/60 bg-secondary/50 text-muted-foreground transition-colors hover:border-primary hover:text-primary"
+              >
+                <FileCode className="h-4 w-4" />
+              </a>
+            )}
             {project.demoUrl && (
               <a
                 href={project.demoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Live Demo"
+                title="Live Demo"
                 className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-border/60 bg-secondary/50 text-muted-foreground transition-colors hover:border-primary hover:text-primary"
               >
                 <ArrowUpRight className="h-4 w-4" />
@@ -187,11 +231,18 @@ function ProjectCard({
           </div>
         </div>
 
-        <p className="font-mono text-xs text-primary">{project.subtitle}</p>
-        <h3 className="mt-1 text-xl font-bold tracking-tight text-balance text-foreground">
+        <div className="flex flex-col gap-0.5">
+          <p className="font-mono text-xs font-semibold text-primary">{project.subtitle}</p>
+          {project.domain && (
+            <p className="font-mono text-[10px] text-muted-foreground/80 tracking-wide">
+              {project.domain}
+            </p>
+          )}
+        </div>
+        <h3 className="mt-1.5 text-xl font-bold tracking-tight text-balance text-foreground">
           {project.title}
         </h3>
-        <p className="mt-3 text-pretty text-sm leading-relaxed text-muted-foreground">
+        <p className="mt-3 text-pretty text-sm leading-relaxed text-muted-foreground line-clamp-4">
           {project.description}
         </p>
 
