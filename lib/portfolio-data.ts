@@ -270,9 +270,10 @@ export const projects: Project[] = [
       'OpenAPI / Swagger',
       'Vite 8',
     ],
-    href: 'https://github.com/anas-byte-dev',
+    href: 'https://github.com/anas-byte-dev/HireSphereAI-FrontEnd',
+    frontendRepo: 'https://github.com/anas-byte-dev/HireSphereAI-FrontEnd',
+    backendRepo: 'https://github.com/anas-byte-dev/HireSphereAI-BackEnd',
     demoUrl: 'https://hire-sphere-ai.vercel.app/',
-    apiDocsUrl: 'https://hiresphereai.onrender.com/swagger-ui.html',
     architecture:
       'Decoupled 2-tier architecture featuring a high-performance Spring Boot 3 REST API on Render and a responsive React 19 SPA deployed on Vercel, bound by a zero-latency SSE real-time event bus.',
     features: [
