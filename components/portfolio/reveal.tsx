@@ -30,7 +30,7 @@ export function Reveal({
     return <div className={cn(className)}>{children}</div>
   }
 
-  const offset = shouldReduceMotion ? 0 : 24
+  const offset = shouldReduceMotion ? 0 : 16
   let x = 0
   let y = 0
   if (direction === 'up') y = offset
@@ -52,9 +52,9 @@ export function Reveal({
       }}
       viewport={{ once: true, margin: '0px 0px -20px 0px' }}
       transition={{
-        duration: shouldReduceMotion ? 0 : 0.35,
+        duration: shouldReduceMotion ? 0 : 0.4,
         delay: shouldReduceMotion ? 0 : delay / 1000,
-        ease: [0.25, 0.1, 0.25, 1],
+        ease: [0.22, 1, 0.36, 1],
       }}
       className={cn(className)}
     >

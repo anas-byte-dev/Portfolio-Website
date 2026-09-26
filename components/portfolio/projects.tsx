@@ -141,7 +141,7 @@ function ProjectCard({
       initial={{ opacity: 0, scale: 0.96, y: 14 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.96, y: -10 }}
-      transition={{ duration: 0.28, delay: index * 0.04 }}
+      transition={{ duration: 0.32, delay: index * 0.05, ease: [0.22, 1, 0.36, 1] }}
       style={{
         rotateX: canHover ? rotateX : undefined,
         rotateY: canHover ? rotateY : undefined,

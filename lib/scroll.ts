@@ -1,6 +1,6 @@
 /**
- * Fast, high-precision smooth scroll controller with zero lag.
- * Instantly glides directly to target sections without sluggish delays or overshoot.
+ * Smooth, balanced scroll controller.
+ * Delivers a crisp, elegant glide across sections without sluggish delays.
  */
 export function scrollToSection(targetIdOrHref: string) {
   if (typeof window === 'undefined') return
@@ -11,7 +11,7 @@ export function scrollToSection(targetIdOrHref: string) {
 
   if (id === 'home') {
     if ((window as any).__lenis) {
-      ;(window as any).__lenis.scrollTo(0, { duration: 0.4 })
+      ;(window as any).__lenis.scrollTo(0, { duration: 0.6 })
     } else {
       window.scrollTo({ top: 0, behavior: 'smooth' })
     }
@@ -28,13 +28,16 @@ export function scrollToSection(targetIdOrHref: string) {
   // 64px is standard header height (h-16); offset ensures the section title & badges are fully visible
   const headerOffset = isMobile ? 64 : 76
 
-  // If Lenis is active, drive through Lenis with fast, snappy duration
+  // Balanced easeOutCubic curve: smooth travel with graceful deceleration
+  const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3)
+
+  // If Lenis is active, drive through Lenis with balanced smooth animation
   if ((window as any).__lenis) {
     const lenis = (window as any).__lenis
     lenis.scrollTo(element, {
       offset: -headerOffset,
-      duration: isMobile ? 0.45 : 0.55,
-      easing: (t: number) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
+      duration: isMobile ? 0.6 : 0.75,
+      easing: easeOutCubic,
     })
     try {
       history.replaceState(null, '', `#${id}`)
