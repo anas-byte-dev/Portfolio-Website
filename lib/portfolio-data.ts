@@ -34,7 +34,7 @@ export const about = {
     'I have hands-on experience with CRUD operations, the MVC pattern, and database integration, and I am eager to join an engineering team as a Graduate Engineer Trainee or Java Developer.',
   ],
   stats: [
-    { value: '5', label: 'Projects Built' },
+    { value: '4', label: 'Projects Built' },
     { value: 'B.Tech', label: 'CSE — Cyber Security' },
     { value: 'Full Stack', label: 'Java Trainee' },
   ],
@@ -376,126 +376,6 @@ export const projects: Project[] = [
         role: 'Admin',
         email: 'admin@hiresphere.ai',
         password: 'admin123',
-      },
-    ],
-  },
-  {
-    title: 'HireSense AI',
-    subtitle: 'Autonomous AI Recruitment & Talent Intelligence Platform',
-    domain: 'Autonomous Agentic AI & Enterprise Talent Intelligence (ATS)',
-    category: 'Full Stack',
-    description:
-      'A full-stack, enterprise-grade Applicant Tracking System (ATS) and talent intelligence engine built using Java 21, Spring Boot 3, and React 19. It automates candidate resume screening, skill gap evaluation, interview question synthesis, and outreach email drafting using an autonomous ReAct multi-tool agent loop integrated with the Google Gemini REST API (v1beta).',
-    stack: [
-      'Java 21',
-      'Spring Boot 3',
-      'Google Gemini API',
-      'React 19',
-      'Spring Security 6',
-      'Spring Data JPA',
-      'Docker',
-      'REST APIs',
-    ],
-    href: 'https://github.com/anas-byte-dev',
-    demoUrl: 'https://hire-sphere-ai.vercel.app/',
-    architecture:
-      'Engineered with a clean layered architecture separating the autonomous ReAct agent loop, JWT security filters, asynchronous worker thread pools, and JPA persistence. Features resilient @RestControllerAdvice error handling, RFC 7807 problem details, and Strategy/Factory design patterns for LLM dispatch and scoring.',
-    features: [
-      'Autonomous ReAct Agent Loop: Orchestrates 4 modular tools (analyzeCandidateFit, scoreApplication, generateInterviewQuestions, draftOutreachEmail) with real-time execution latency logging in agent_audit_logs.',
-      'Live Gemini API Integration: In-app runtime key verification and model switching with instant roundtrip health diagnostics and graceful offline fallback.',
-      'Concurrent Batch Screening: Evaluates multiple candidate resumes simultaneously across worker threads using Java CompletableFuture.',
-      'Dynamic 5-Stage Kanban Pipeline: Real-time candidate tracking across Applied, AI Screened, Interviewing, Offer Extended, and Archived stages with 1-click AI evaluation triggers.',
-      'Conversational AI Recruiter Copilot: Interactive chat interface allowing recruiters to query candidate rankings, compare applicants, and generate tailored outreach.',
-      'Candidate Experience Dashboard: Candidate dashboard to browse active job postings, submit resumes, track review stages, and view transparent AI fit assessments.',
-    ],
-    techCategories: [
-      {
-        category: 'Backend',
-        items: [
-          'Java 21 (Records, Pattern Matching)',
-          'Spring Boot 3.5',
-          'Spring Data JPA',
-          'Hibernate',
-          'Maven',
-        ],
-      },
-      {
-        category: 'Agentic AI & LLMs',
-        items: [
-          'Google Gemini REST API (v1beta)',
-          'gemini-3.5-flash-lite / gemini-1.5-flash',
-          'ReAct (Reason + Act) tool execution loop',
-          'Context-aware heuristic fallback engine',
-        ],
-      },
-      {
-        category: 'Security & Auth',
-        items: [
-          'Spring Security 6',
-          'Stateless JWT Bearer Filter (JJWT 0.12.x)',
-          'Role-Based Access Control (ROLE_RECRUITER, ROLE_CANDIDATE)',
-          'BCrypt password hashing',
-        ],
-      },
-      {
-        category: 'Concurrency & Performance',
-        items: [
-          'CompletableFuture.supplyAsync',
-          'Dedicated ThreadPoolExecutor',
-          'Parallel batch candidate evaluations',
-          'Non-blocking asynchronous workflows',
-        ],
-      },
-      {
-        category: 'Database & Persistence',
-        items: [
-          'Embedded H2 Database with live console (/h2-console)',
-          'Production-ready JPA entities',
-          'JPQL aggregate queries',
-          'Docker PostgreSQL support',
-        ],
-      },
-      {
-        category: 'Frontend',
-        items: [
-          'React 19',
-          'Vite',
-          'Axios with JWT request interceptors',
-          'Lucide Vector Icons',
-          'Canvas Confetti',
-          'Custom Glassmorphism design tokens (Plus Jakarta Sans & JetBrains Mono)',
-        ],
-      },
-      {
-        category: 'DevOps & APIs',
-        items: [
-          'Docker',
-          'Docker Compose',
-          'OpenAPI 3 / Swagger UI (/swagger-ui.html)',
-          'Jakarta Bean Validation (@NotBlank, @Email)',
-        ],
-      },
-    ],
-    engineeringPatterns: [
-      {
-        label: 'Design Patterns',
-        detail:
-          'Strategy Pattern (scoring & fit algorithms), Factory Pattern (LLM client dispatch), Builder Pattern (DTOs & tool execution results).',
-      },
-      {
-        label: 'Security Architecture',
-        detail:
-          'Custom OncePerRequestFilter extracting JWT claims from Authorization headers, delegating to DaoAuthenticationProvider.',
-      },
-      {
-        label: 'Error Handling',
-        detail:
-          'Centralized @RestControllerAdvice exception handler with standardized RFC 7807 problem details.',
-      },
-      {
-        label: 'UI Design',
-        detail:
-          'Obsidian dark mode with responsive grid layouts, animated live pulse indicators, zero cartoonish emojis, and crisp Lucide vector icons.',
       },
     ],
   },
