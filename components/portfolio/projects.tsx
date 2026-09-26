@@ -149,19 +149,19 @@ function ProjectCard({
       }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-border/80 bg-card/80 p-5 sm:p-6 shadow-md backdrop-blur-md transition-all hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10"
+      className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-border/80 bg-card/85 p-4 sm:p-6 shadow-md backdrop-blur-md transition-all hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10 min-w-0 w-full"
     >
       {/* Top Banner Accent */}
-      <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-emerald-500 via-primary to-teal-400 opacity-60 transition-opacity group-hover:opacity-100" />
+      <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-indigo-500 via-primary to-cyan-400 opacity-70 transition-opacity group-hover:opacity-100" />
 
-      <div>
+      <div className="min-w-0">
         {/* Category & Icons */}
-        <div className="mb-4 flex items-center justify-between">
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/30 bg-primary/10 px-2.5 py-0.5 font-mono text-[11px] font-medium text-primary">
+        <div className="mb-4 flex items-center justify-between gap-2">
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/30 bg-primary/10 px-2.5 py-0.5 font-mono text-[11px] font-medium text-primary shrink-0">
             <Sparkles className="h-3 w-3" />
             {project.category}
           </span>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
             {project.frontendRepo && project.backendRepo ? (
               <>
                 <a
@@ -170,10 +170,10 @@ function ProjectCard({
                   rel="noopener noreferrer"
                   aria-label="Frontend Repository (GitHub)"
                   title="Frontend Repo (GitHub)"
-                  className="group/link relative inline-flex h-8 w-8 items-center justify-center rounded-lg border border-border/60 bg-secondary/50 text-muted-foreground transition-colors hover:border-primary hover:text-primary"
+                  className="group/link relative inline-flex h-8 w-8 items-center justify-center rounded-lg border border-border/60 bg-secondary/60 text-foreground/80 transition-colors hover:border-primary hover:text-primary active:scale-95"
                 >
                   <GithubIcon className="h-4 w-4" />
-                  <span className="absolute -bottom-1 -right-1 rounded bg-secondary px-0.5 text-[8px] font-mono font-bold leading-none text-muted-foreground border border-border/70 group-hover/link:text-primary group-hover/link:border-primary/50">
+                  <span className="absolute -bottom-1 -right-1 rounded bg-secondary px-0.5 text-[8px] font-mono font-bold leading-none text-foreground/80 border border-border/70 group-hover/link:text-primary group-hover/link:border-primary/50">
                     FE
                   </span>
                 </a>
@@ -183,10 +183,10 @@ function ProjectCard({
                   rel="noopener noreferrer"
                   aria-label="Backend Repository (GitHub)"
                   title="Backend Repo (GitHub)"
-                  className="group/link relative inline-flex h-8 w-8 items-center justify-center rounded-lg border border-border/60 bg-secondary/50 text-muted-foreground transition-colors hover:border-primary hover:text-primary"
+                  className="group/link relative inline-flex h-8 w-8 items-center justify-center rounded-lg border border-border/60 bg-secondary/60 text-foreground/80 transition-colors hover:border-primary hover:text-primary active:scale-95"
                 >
                   <GithubIcon className="h-4 w-4" />
-                  <span className="absolute -bottom-1 -right-1 rounded bg-secondary px-0.5 text-[8px] font-mono font-bold leading-none text-muted-foreground border border-border/70 group-hover/link:text-primary group-hover/link:border-primary/50">
+                  <span className="absolute -bottom-1 -right-1 rounded bg-secondary px-0.5 text-[8px] font-mono font-bold leading-none text-foreground/80 border border-border/70 group-hover/link:text-primary group-hover/link:border-primary/50">
                     BE
                   </span>
                 </a>
@@ -198,7 +198,7 @@ function ProjectCard({
                 rel="noopener noreferrer"
                 aria-label="GitHub Profile"
                 title="GitHub Profile"
-                className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-border/60 bg-secondary/50 text-muted-foreground transition-colors hover:border-primary hover:text-primary"
+                className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-border/60 bg-secondary/60 text-foreground/80 transition-colors hover:border-primary hover:text-primary active:scale-95"
               >
                 <GithubIcon className="h-4 w-4" />
               </a>
@@ -210,7 +210,7 @@ function ProjectCard({
                 rel="noopener noreferrer"
                 aria-label="API / Swagger Documentation"
                 title="API / Swagger Documentation"
-                className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-border/60 bg-secondary/50 text-muted-foreground transition-colors hover:border-primary hover:text-primary"
+                className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-border/60 bg-secondary/60 text-foreground/80 transition-colors hover:border-primary hover:text-primary active:scale-95"
               >
                 <FileCode className="h-4 w-4" />
               </a>
@@ -222,7 +222,7 @@ function ProjectCard({
                 rel="noopener noreferrer"
                 aria-label="Live Demo"
                 title="Live Demo"
-                className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-border/60 bg-secondary/50 text-muted-foreground transition-colors hover:border-primary hover:text-primary"
+                className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-border/60 bg-secondary/60 text-foreground/80 transition-colors hover:border-primary hover:text-primary active:scale-95"
               >
                 <ArrowUpRight className="h-4 w-4" />
               </a>
@@ -230,27 +230,27 @@ function ProjectCard({
           </div>
         </div>
 
-        <div className="flex flex-col gap-0.5">
-          <p className="font-mono text-xs font-semibold text-primary">{project.subtitle}</p>
+        <div className="flex flex-col gap-0.5 min-w-0">
+          <p className="font-mono text-xs font-semibold text-primary break-words">{project.subtitle}</p>
           {project.domain && (
-            <p className="font-mono text-[10px] text-muted-foreground/80 tracking-wide">
+            <p className="font-mono text-[10px] text-muted-foreground tracking-wide break-words">
               {project.domain}
             </p>
           )}
         </div>
-        <h3 className="mt-1.5 text-xl font-bold tracking-tight text-balance text-foreground">
+        <h3 className="mt-1.5 text-lg sm:text-xl font-bold tracking-tight text-balance text-foreground break-words">
           {project.title}
         </h3>
-        <p className="mt-3 text-pretty text-sm leading-relaxed text-muted-foreground line-clamp-4">
+        <p className="mt-2.5 text-pretty text-xs sm:text-sm leading-relaxed text-muted-foreground line-clamp-4">
           {project.description}
         </p>
 
         {/* Tech Stack Pills */}
-        <ul className="mt-5 flex flex-wrap gap-1.5">
+        <ul className="mt-4 flex flex-wrap gap-1.5 min-w-0">
           {project.stack.map((tech) => (
             <li
               key={tech}
-              className="rounded-md border border-border/60 bg-secondary/40 px-2 py-0.5 font-mono text-[11px] text-muted-foreground"
+              className="rounded-md border border-border/80 bg-secondary/60 px-2 py-0.5 font-mono text-[10.5px] sm:text-[11px] font-medium text-foreground/90 break-words"
             >
               {tech}
             </li>
@@ -259,15 +259,15 @@ function ProjectCard({
       </div>
 
       {/* Details Button */}
-      <div className="mt-6 border-t border-border/60 pt-4">
+      <div className="mt-5 border-t border-border/60 pt-4">
         <button
           type="button"
           onClick={onOpenDetails}
-          className="flex w-full items-center justify-center gap-2 rounded-xl border border-primary/20 bg-primary/5 py-2 font-mono text-xs font-semibold text-primary transition-all hover:border-primary hover:bg-primary hover:text-primary-foreground"
+          className="flex w-full items-center justify-center gap-1.5 sm:gap-2 rounded-xl border border-primary/25 bg-primary/10 py-2.5 px-2 font-mono text-[11px] sm:text-xs font-semibold text-primary transition-all hover:border-primary hover:bg-primary hover:text-primary-foreground active:scale-[0.98]"
         >
-          <Layers className="h-3.5 w-3.5" />
-          <span>View Architecture & Specs</span>
-          <Info className="h-3 w-3 opacity-70" />
+          <Layers className="h-3.5 w-3.5 shrink-0" />
+          <span className="truncate">View Architecture & Specs</span>
+          <Info className="h-3 w-3 opacity-70 shrink-0" />
         </button>
       </div>
     </motion.div>

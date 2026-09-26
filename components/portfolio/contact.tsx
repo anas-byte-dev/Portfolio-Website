@@ -145,7 +145,7 @@ export function Contact() {
                   title="Copy email to clipboard"
                 >
                   {copiedKey === 'email' ? (
-                    <Check className="h-4 w-4 text-emerald-500" />
+                    <Check className="h-4 w-4 text-primary" />
                   ) : (
                     <Copy className="h-4 w-4" />
                   )}
@@ -188,7 +188,7 @@ export function Contact() {
                   title="Copy phone to clipboard"
                 >
                   {copiedKey === 'phone' ? (
-                    <Check className="h-4 w-4 text-emerald-500" />
+                    <Check className="h-4 w-4 text-primary" />
                   ) : (
                     <Copy className="h-4 w-4" />
                   )}
@@ -386,7 +386,7 @@ export function Contact() {
                   animate={{ opacity: 1, scale: 1 }}
                   className="flex flex-col items-center justify-center py-8 text-center"
                 >
-                  <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500/15 text-emerald-500 shadow-lg shadow-emerald-500/20">
+                  <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-primary/15 text-primary shadow-lg shadow-primary/20">
                     <CheckCircle2 className="h-8 w-8" />
                   </div>
                   <h3 className="text-2xl font-bold text-foreground">

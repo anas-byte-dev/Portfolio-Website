@@ -87,15 +87,15 @@ export function About() {
                 <motion.div
                   whileHover={{ scale: 1.02, y: -2 }}
                   transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                  className="relative overflow-hidden rounded-2xl border border-border/80 bg-gradient-to-br from-card/80 to-card/40 p-4 sm:p-6 shadow-sm backdrop-blur-md transition-all hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5"
+                  className="relative overflow-hidden rounded-2xl border border-border/80 bg-gradient-to-br from-card/90 to-card/50 p-4 sm:p-6 shadow-xs backdrop-blur-md transition-all hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5 min-w-0"
                 >
-                  <div className="flex items-baseline justify-between">
-                    <span className="font-mono text-2xl lg:text-4xl font-extrabold tracking-tight text-primary">
+                  <div className="flex items-baseline justify-between gap-2">
+                    <span className="font-mono text-xl sm:text-2xl lg:text-4xl font-extrabold tracking-tight text-primary truncate">
                       {stat.value}
                     </span>
-                    <Sparkles className="h-4 w-4 text-primary/40" />
+                    <Sparkles className="h-4 w-4 text-primary/50 shrink-0" />
                   </div>
-                  <div className="mt-1.5 sm:mt-2 text-xs sm:text-sm font-medium text-muted-foreground">
+                  <div className="mt-1.5 sm:mt-2 text-xs sm:text-sm font-medium text-foreground/80 break-words">
                     {stat.label}
                   </div>
                 </motion.div>

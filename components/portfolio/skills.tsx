@@ -75,31 +75,31 @@ export function Skills() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.35, delay: i * 0.05 }}
                 whileHover={{ y: -4 }}
-                className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-border/80 bg-card/70 p-4 sm:p-6 shadow-sm backdrop-blur-md transition-all hover:border-primary/50 hover:shadow-xl hover:shadow-primary/5"
+                className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-border/80 bg-card/80 p-4 sm:p-6 shadow-xs backdrop-blur-md transition-all hover:border-primary/50 hover:shadow-xl hover:shadow-primary/5 min-w-0"
               >
                 {/* Subtle top glare line on card hover */}
                 <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-primary/50 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
 
-                <div>
-                  <div className="flex items-center justify-between">
-                    <h3 className="font-mono text-sm font-bold tracking-wide text-primary">
+                <div className="min-w-0">
+                  <div className="flex items-center justify-between gap-2">
+                    <h3 className="font-mono text-sm font-bold tracking-wide text-primary truncate">
                       {group.title}
                     </h3>
-                    <span className="font-mono text-[11px] text-muted-foreground">
+                    <span className="font-mono text-[11px] text-muted-foreground shrink-0">
                       {group.items.length} skills
                     </span>
                   </div>
 
-                  <ul className="mt-4 flex flex-wrap gap-1.5 sm:gap-2">
+                  <ul className="mt-4 flex flex-wrap gap-1.5 sm:gap-2 min-w-0">
                     {group.items.map((item) => (
                       <motion.li
                         key={item}
-                        whileHover={{ scale: 1.05 }}
+                        whileHover={{ scale: 1.04 }}
                         whileTap={{ scale: 0.96 }}
-                        className="flex items-center gap-1.5 rounded-lg border border-border/70 bg-secondary/50 px-2.5 sm:px-3 py-1 sm:py-1.5 font-mono text-[11px] sm:text-xs text-foreground/90 transition-colors hover:border-primary/50 hover:bg-primary/10 hover:text-primary"
+                        className="flex items-center gap-1.5 rounded-lg border border-border/70 bg-secondary/60 px-2.5 sm:px-3 py-1 sm:py-1.5 font-mono text-[11px] sm:text-xs font-medium text-foreground/95 transition-colors hover:border-primary/50 hover:bg-primary/10 hover:text-primary max-w-full min-w-0"
                       >
-                        <CheckCircle className="h-3 w-3 text-primary/70 shrink-0" />
-                        <span>{item}</span>
+                        <CheckCircle className="h-3 w-3 text-primary/80 shrink-0" />
+                        <span className="break-words leading-tight">{item}</span>
                       </motion.li>
                     ))}
                   </ul>

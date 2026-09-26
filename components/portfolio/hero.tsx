@@ -79,13 +79,15 @@ export function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="mb-5 inline-flex items-center gap-2.5 rounded-full border border-primary/30 bg-card/60 px-3 py-1.5 font-mono text-[10px] sm:text-xs text-foreground/90 backdrop-blur-md shadow-sm"
+            className="mb-5 inline-flex max-w-full items-center gap-2 rounded-full border border-primary/30 bg-card/70 px-3 py-1.5 font-mono text-[10px] sm:text-xs text-foreground/90 backdrop-blur-md shadow-xs"
           >
-            <span className="relative flex h-2.5 w-2.5">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500" />
+            <span className="relative flex h-2 w-2 sm:h-2.5 sm:w-2.5 shrink-0">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan-400 opacity-75" />
+              <span className="relative inline-flex h-2 w-2 sm:h-2.5 sm:w-2.5 rounded-full bg-cyan-500" />
             </span>
-            Available for GET & Java Developer Roles
+            <span className="truncate sm:whitespace-normal">
+              Available for GET & Java Developer Roles
+            </span>
           </motion.div>
 
           {/* Name Headline */}
@@ -96,7 +98,7 @@ export function Hero() {
             className="text-balance text-3xl font-extrabold tracking-tight sm:text-5xl lg:text-7xl"
           >
             Hi, I&apos;m{' '}
-            <span className="bg-gradient-to-r from-foreground via-primary to-emerald-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-foreground via-primary to-cyan-400 bg-clip-text text-transparent">
               {profile.name}
             </span>
           </motion.h1>
@@ -363,7 +365,7 @@ function InteractiveTerminalCard() {
       {/* Ambient Glow behind terminal */}
       <div
         aria-hidden="true"
-        className="absolute -inset-2 -z-10 rounded-2xl bg-gradient-to-tr from-primary/20 via-emerald-500/10 to-teal-400/20 blur-2xl"
+        className="absolute -inset-2 -z-10 rounded-2xl bg-gradient-to-tr from-primary/25 via-indigo-500/15 to-cyan-400/20 blur-2xl"
       />
 
       <div className="overflow-hidden rounded-2xl border border-border/80 bg-card/90 shadow-2xl backdrop-blur-xl">
@@ -424,7 +426,7 @@ function InteractiveTerminalCard() {
                 title="Copy code"
               >
                 {copied ? (
-                  <Check className="h-3.5 w-3.5 text-emerald-500" />
+                  <Check className="h-3.5 w-3.5 text-primary" />
                 ) : (
                   <Copy className="h-3.5 w-3.5" />
                 )}
@@ -432,8 +434,8 @@ function InteractiveTerminalCard() {
             </div>
           </div>
 
-          {/* Mobile File Switcher Tabs Row (shown only on mobile screens < 640px) */}
-          <div className="mt-2 flex sm:hidden items-center gap-1 overflow-x-auto no-scrollbar rounded-lg border border-border/50 bg-background/50 p-1 w-full">
+          {/* Mobile File Switcher Tabs Row (horizontal swipe, never cramped) */}
+          <div className="mt-2 flex sm:hidden items-center gap-1.5 overflow-x-auto no-scrollbar rounded-lg border border-border/60 bg-background/60 p-1 w-full">
             {(Object.keys(files) as FileKey[]).map((key) => {
               const file = files[key]
               const Icon = file.icon
@@ -446,14 +448,14 @@ function InteractiveTerminalCard() {
                     setActiveTab(key)
                     setShowConsole(false)
                   }}
-                  className={`flex flex-1 items-center justify-center gap-1 rounded-md px-2 py-1 font-mono text-[11px] transition-colors ${
+                  className={`flex shrink-0 items-center justify-center gap-1 rounded-md px-2.5 py-1 font-mono text-[11px] whitespace-nowrap transition-colors ${
                     isActive
-                      ? 'bg-card text-primary font-medium shadow-sm'
+                      ? 'bg-card text-primary font-semibold shadow-xs border border-border/80'
                       : 'text-muted-foreground hover:text-foreground'
                   }`}
                 >
                   <Icon className="h-3 w-3 shrink-0" />
-                  <span className="truncate">{file.name}</span>
+                  <span>{file.name}</span>
                 </button>
               )
             })}
@@ -469,7 +471,7 @@ function InteractiveTerminalCard() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -6 }}
               transition={{ duration: 0.18, ease: 'easeOut' }}
-              className="w-full max-w-full overflow-x-auto p-3.5 sm:p-5 font-mono text-[11px] sm:text-[12.5px] leading-relaxed text-foreground/90 select-text no-scrollbar"
+              className="w-full max-w-full overflow-x-auto p-3.5 sm:p-5 font-mono text-[11px] sm:text-[12.5px] leading-relaxed text-foreground/90 select-text no-scrollbar break-normal"
             >
               <code>{files[activeTab].code}</code>
             </motion.pre>
@@ -503,9 +505,9 @@ function InteractiveTerminalCard() {
                     animate={{ opacity: 1, x: 0 }}
                     className={
                       log.includes('[SUCCESS]') || log.includes('✨')
-                        ? 'text-emerald-400 font-semibold'
+                        ? 'text-cyan-400 font-semibold'
                         : log.includes('2026')
-                        ? 'text-sky-400'
+                        ? 'text-indigo-400'
                         : 'text-muted-foreground'
                     }
                   >

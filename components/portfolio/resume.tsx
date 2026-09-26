@@ -33,7 +33,7 @@ export function Resume() {
             className="group relative overflow-hidden rounded-2xl border border-border/80 bg-card/85 p-6 sm:p-8 shadow-xl backdrop-blur-xl transition-all hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10"
           >
             {/* Top Accent Gradient */}
-            <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-emerald-500 via-primary to-teal-400" />
+            <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-indigo-500 via-primary to-cyan-400" />
 
             {/* Document Header */}
             <div className="flex flex-wrap items-start justify-between gap-4 border-b border-border/60 pb-6">
@@ -145,7 +145,7 @@ export function Resume() {
                 </div>
                 <div className="flex justify-between border-b border-border/50 pb-2">
                   <dt className="text-muted-foreground">Availability:</dt>
-                  <dd className="font-semibold text-emerald-500">Immediate Joiner</dd>
+                  <dd className="font-semibold text-primary">Immediate Joiner</dd>
                 </div>
                 <div className="flex justify-between border-b border-border/50 pb-2">
                   <dt className="text-muted-foreground">Target Roles:</dt>

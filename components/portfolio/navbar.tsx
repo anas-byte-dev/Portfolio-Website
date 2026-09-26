@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { navLinks } from '@/lib/portfolio-data'
-import { ThemeToggle } from './theme-toggle'
+import { ThemeToggle, ThemeSegmentedControl } from './theme-toggle'
 
 import { scrollToSection } from '@/lib/scroll'
 
@@ -198,6 +198,14 @@ export function Navbar() {
                   )
                 })}
               </ul>
+
+              {/* Mobile Theme Switcher Bar */}
+              <div className="mx-auto max-w-6xl px-5 pb-5 pt-2 sm:px-8 border-t border-border/60">
+                <div className="mb-2 text-[11px] font-mono text-muted-foreground uppercase tracking-wider">
+                  Theme Appearance
+                </div>
+                <ThemeSegmentedControl />
+              </div>
             </motion.div>
           </>
         )}
