@@ -32,6 +32,11 @@ export const metadata: Metadata = {
     'Portfolio',
   ],
   authors: [{ name: 'Anas Siddiqui' }],
+  icons: {
+    icon: '/favicon-photo.jpg',
+    shortcut: '/favicon-photo.jpg',
+    apple: '/favicon-photo.jpg',
+  },
   openGraph: {
     type: 'website',
     url: siteUrl,
@@ -39,12 +44,14 @@ export const metadata: Metadata = {
     description:
       'Full-stack applications with Java, Spring Boot, React.js, MySQL, and REST APIs.',
     siteName: 'Anas Siddiqui',
+    images: ['/favicon-photo.jpg'],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Anas Siddiqui | Java Full Stack Developer',
     description:
       'Full-stack applications with Java, Spring Boot, React.js, MySQL, and REST APIs.',
+    images: ['/favicon-photo.jpg'],
   },
   generator: 'v0.app',
 }
