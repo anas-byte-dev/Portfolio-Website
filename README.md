@@ -1,57 +1,37 @@
-Personal Portfolio
+# Anas Siddiqui — Portfolio
 
-A personal portfolio website built with Next.js and TypeScript, styled with Tailwind CSS. It showcases my projects, technical skills, education, and contact information through reusable, type-safe components and a mobile-first responsive layout.
+My personal portfolio website built with Next.js, TypeScript, and Tailwind CSS.
 
-🔗 Live Demo: https://anas-sidd-portfolio.vercel.app/
+🔗 Live: https://anas-sidd-portfolio.vercel.app/
 
-🔗 GitHub: https://github.com/anas-byte-dev/PortFolio
+## What's inside
 
-Features
-Responsive, mobile-first design that adapts across all screen sizes
-Reusable, type-safe React components built with TypeScript
-Sections for Projects, Technical Skills, Education, and Contact
-Optimized routing and page performance via Next.js
-Clean, utility-first styling with Tailwind CSS
-Tech Stack
-Framework: Next.js
-Language: TypeScript
-Styling: Tailwind CSS
-Markup: HTML5, CSS3
-Getting Started
+- Projects I've built (MedPlus, HireSphere AI, and more)
+- My skills, education, and experience
+- Contact form
+- Dark mode, Light mode, and Eye Comfort mode
+- Mobile friendly
 
-Clone the repository and install dependencies:
+## Tech used
 
-bash
-git clone https://github.com/anas-byte-dev/PortFolio.git
-cd PortFolio
+- Next.js 15
+- TypeScript
+- Tailwind CSS
+- shadcn/ui
+
+## Run locally
+
+```bash
+git clone https://github.com/anas-byte-dev/Portfolio-Website.git
+cd Portfolio-Website
 npm install
-
-Run the development server:
-
-bash
 npm run dev
+```
 
-Open http://localhost:3000 in your browser to view it.
+Open http://localhost:3000
 
-Build for Production
-bash
-npm run build
-npm start
-Project Structure
-├── public/          # Static assets (images, icons, etc.)
-├── src/
-│   ├── app/         # Pages and routes
-│   ├── components/  # Reusable UI components
-│   └── styles/      # Global styles
-├── package.json
-└── README.md
+## Contact
 
-(Adjust this section if your folder layout is different.)
-
-Contact
-Email: anassidd7256@gmail.com
-LinkedIn: linkedin.com/in/anas-siddiqui-b46a23209
-GitHub: github.com/anas-byte-dev
-License
-
-This project is open source and available for personal reference. Feel free to fork it for your own portfolio.
+- Email: anassidd7256@gmail.com
+- LinkedIn: linkedin.com/in/anas-siddiqui-b46a23209
+- GitHub: github.com/anas-byte-dev
